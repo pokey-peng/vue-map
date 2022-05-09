@@ -1,0 +1,28 @@
+html {
+  font-size: 15px;
+}
+
+.scrolly-overlay .scrolly-sticky {
+  -webkit-transform: translateZ(0);
+  height: calc(100vh - 64px);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 64px;
+  transform: translateZ(0);
+}
+
+.scrolly-overlay .scrolly-text {
+  position: relative;
+  z-index: 2;
+}
+
+.scrolly-overlay .scrolly-text .step .text-block {
+  background-color: #f8f4ee;
+  border-radius: 4px;
+}
+
+.scrolly-overlay .scrolly-sticky .map-container {
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
