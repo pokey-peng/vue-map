@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 let map;
 export default {
   name: "MapSecond",
@@ -12,6 +13,17 @@ export default {
   async mounted() {
     this.initMap();
   },
+  computed: {
+    ...mapGetters("mapView", ["currentPage", "step"]),
+    ...mapGetters("mapState", ["mapOptions"]),
+  },
+  watch: {
+    step() {
+      console.log(this.step);
+      if (this.step === "2-1" || this.step === "2-5") return;
+      map.flyTo(this.mapOptions(this.step));
+    },
+  },
   methods: {
     initMap() {
       this.$mapboxgl.accessToken =
@@ -19,11 +31,11 @@ export default {
       // eslint-disable-next-line
       map = new this.$mapboxgl.Map({
         container: "map",
-        style: "mapbox://styles/mapbox/navigation-night-v1",
-        center: [32, 49],
+        style: "mapbox://styles/mapbox/dark-v10",
+        center: [-36, 45],
         boxZoom: true,
         dragRotate: true,
-        zoom: 3,
+        zoom: 2.77,
         scrollZoom: false,
       });
     },

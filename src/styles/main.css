@@ -1,5 +1,7 @@
 html {
-  font-size: 15px;
+  font-size: 16px;
+  font-family: Tahoma, Arial, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", sans-serif;
 }
 
 .scrolly-overlay .scrolly-sticky {
@@ -14,15 +16,27 @@ html {
 .scrolly-overlay .scrolly-text {
   position: relative;
   z-index: 2;
+  max-width: 45rem;
 }
-
+.scrolly-overlay .scrolly-text .step {
+  height: calc(100vh - 64px);
+}
 .scrolly-overlay .scrolly-text .step .text-block {
-  background-color: #f8f4ee;
+  background-color: #444;
   border-radius: 4px;
+  opacity: 0.9;
+}
+.text-block .container {
+  padding: 25px 45px;
 }
 
 .scrolly-overlay .scrolly-sticky .map-container {
   height: 100%;
   position: relative;
   z-index: 1;
+}
+
+.font-secondary {
+  font-family: "Roboto", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    sans-serif !important;
 }

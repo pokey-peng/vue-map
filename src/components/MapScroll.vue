@@ -15,39 +15,26 @@
         </video>
       </div>
     </div>
-    <v-container inner class="scrolly-text py-0">
+    <v-container class="scrolly-text py-0">
       <div class="step" data-step="1">
         <v-row
           class="wrap fill-height justify-center align-content-center"
           style="position: relative"
         >
           <div class="text-block text-center white--text">
-            <p class="font-secondary">People & Society / Asia-wide</p>
+            <p class="font-secondary">电子地图学</p>
 
-            <h1 class="display-4 font-secondary white--text my-3">
-              “冷战余孽” <br />
-              北约编年史
+            <h1 class="text-h1 font-secondary white--text my-lg-6">
+              “冷战余孽” —— 北约编年史
             </h1>
+            <address class="font-secondary mb-4">
+              小组成员：王骁骁、何知远、边朵、蒋文芳、阎宇晨
+            </address>
 
-            <address class="font-secondary mb-2">by Peiying Loh</address>
-
-            <time class="font-secondary">
-              <strong class="mr-1">Published</strong> 11 November 2018
-            </time>
-
-            <p class="body-1 font-weight-bold font-italic mt-5">
+            <p class="body-1 font-weight-bold font-italic mt-lg-12 mb-0">
               <v-icon small color="grey lighten-4">mdi-allergy</v-icon>
-              Interactions become available in the map when you see the hand
-              pointer icon. You will also be able to click, hold and drag to
-              move the map around.
+              当出现此图标时，可以与地图进行交互
             </p>
-          </div>
-
-          <!-- mouse scroller icon -->
-          <div class="mousey-scroller">
-            <div class="mousey">
-              <div class="mousey__wheel" />
-            </div>
           </div>
         </v-row>
       </div>
@@ -56,12 +43,13 @@
         <v-row class="wrap fill-height align-center" style="position: relative">
           <div class="text-block text-center">
             <p class="headline white--text mb-3 mt-3">
-              Back in September 2013, President Xi Jinping first introduced the
-              Silk Road Economic Belt during his visit to Kazakhstan. Just a
-              month later, he gave another speech to the Indonesian parliament
-              and proposed the 21st Century Maritime Silk Road. Together, these
-              two features are now dubbed the Belt, Road Initiative (or
-              sometimes, One Belt, One Road).
+              北大西洋公约组织,简称北约组织或北约,第二次世界大战后,美国为了遏制苏联,
+              维护其在欧洲的主导地位，联合西欧一些国家于1949年4月4日正式成立了北大西洋公约组织（North
+              Atlantic Treaty Organization--NATO)（北约）
+              。总部位于比利时布鲁塞尔。
+              北约拥有大量核武器和常规部队，是西方的重要军事力量。这是二战后资本主义阵
+              营军事上实现战略同盟的标志，是马歇尔计划在军事领域的延伸和发展，使美国得
+              以控制欧洲联盟的防务体系，是美国世界超级大国领导地位的标志
             </p>
           </div>
         </v-row>
@@ -71,11 +59,7 @@
         <v-row class="wrap fill-height align-center" style="position: relative">
           <div class="text-block text-center">
             <p class="headline white--text mb-5">
-              Both initiatives aim at creating trade habitats across the globe
-              that will cultivate multilateral economic cooperation and
-              connectivity. In order to do so, infrastructure is key. To this,
-              China is investing all across the globe mainly in transport and
-              energy.
+              截至2020年3月，北大西洋公约组织有30个成员国：比利时、冰岛、丹麦、德国、法国、荷兰、加拿大、卢森堡、美国、挪威、葡萄牙、土耳其、西班牙、希腊、意大利、英国、波兰、匈牙利、捷克、爱沙尼亚、拉脱维亚、立陶宛、斯洛伐克、斯洛文尼亚、罗马尼亚、保加利亚、阿尔巴尼亚、克罗地亚、黑山、北马其顿。总部位于比利时布鲁塞尔。
             </p>
           </div>
         </v-row>
@@ -96,7 +80,6 @@ export default {
     initScrollama() {
       const scroller = this.$scrollama();
       scroller.setup({
-        container: "#landing",
         graphic: "#landing .scrolly-sticky",
         step: "#landing .scrolly-text .step", // required
         offset: 64 / window.innerHeight, // after navbar height
