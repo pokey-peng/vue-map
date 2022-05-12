@@ -18,6 +18,12 @@ html {
   z-index: 2;
   max-width: 45rem;
 }
+.scrolly-overlay .scrolly-text-side-bar {
+  /* position: relative;
+  z-index: 2;
+  max-width: 45rem; */
+  margin-left: 2%;
+}
 .scrolly-overlay .scrolly-text .step {
   height: calc(100vh - 64px);
   z-index: 2;
@@ -28,6 +34,12 @@ html {
   opacity: 0.9;
   z-index: 3;
 }
+/* .scrolly-overlay .scrolly-text-side-bar .step .text-block {
+  background-color: #444;
+  border-radius: 4px;
+  opacity: 0.9;
+  z-index: 3;
+} */
 .text-block .container {
   padding: 25px 45px;
 }

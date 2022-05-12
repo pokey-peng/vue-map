@@ -85,11 +85,11 @@
         </div>
       </v-row>
     </v-container>
-    <!-- <v-container class="scrolly-text py-0">
-      <v-row class="wrap justify-center align-start step">
-        <div data-step="2-2" class="text-block">
+    <v-container class="scrolly-text scrolly-text-side-bar py-0">
+      <v-row class="wrap justify-center align-center step">
+        <div data-step="2-6" class="text-block">
           <v-container>
-            <h2 class="h5 mb-lg-3">北约源起</h2>
+            <h2 class="h5 mb-lg-3">北约源起-侧栏</h2>
             <p class="body-2">
               我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
               无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
@@ -97,7 +97,29 @@
           </v-container>
         </div>
       </v-row>
-    </v-container> -->
+      <v-row class="wrap justify-center align-center step">
+        <div data-step="2-7" class="text-block">
+          <v-container>
+            <h2 class="h5 mb-lg-3">北约源起-侧栏</h2>
+            <p class="body-2">
+              我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
+              无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
+            </p>
+          </v-container>
+        </div>
+      </v-row>
+      <v-row class="wrap justify-center align-center step">
+        <div data-step="2-8" class="text-block">
+          <v-container>
+            <h2 class="h5 mb-lg-3">北约源起-侧栏</h2>
+            <p class="body-2">
+              我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
+              无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
+            </p>
+          </v-container>
+        </div>
+      </v-row>
+    </v-container>
   </section>
 </template>
 <script>

@@ -58,7 +58,7 @@ const mutations = {};
 const actions = {};
 
 const getters = {
-  mapOptions: (state) => (viewId) => state.camera[viewId],
+  mapOptions: (state) => (viewId) => state.camera[viewId] ?? {},
   mapLayers: (state) => (viewId) =>
     state.settings.find((view) => view.id === viewId).layers,
 };
