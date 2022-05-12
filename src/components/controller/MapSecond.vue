@@ -20,7 +20,7 @@ export default {
   watch: {
     step() {
       console.log(this.step);
-      if (this.step === "2-1" || this.step === "2-5") return;
+      if (this.step === "2-5") return;
       map.flyTo(this.mapOptions(this.step));
     },
   },

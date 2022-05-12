@@ -2,7 +2,32 @@
   <section id="map-container-2" class="scrolly-overlay">
     <div class="scrolly-sticky">
       <MapSecond />
+      <div id="slideContainer" v-show="currentPage === 1 ? true : false">
+        <v-btn
+          class="player-btn rounded-circle"
+          elevation="3"
+          absolute
+          left
+          color="brown darken-1"
+          @click="pause"
+          style="height: 64px"
+        >
+          <v-icon>{{ isPlay ? "mdi-pause" : "mdi-play" }}</v-icon>
+        </v-btn>
+        <vue-slider
+          ref="slideM"
+          v-model="value"
+          :data="data"
+          :marks="true"
+          @change="getTime"
+        >
+          <template v-slot:tooltip="{ value, focus }">
+            <div :class="['custom-tooltip', { focus }]">{{ value }}</div>
+          </template>
+        </vue-slider>
+      </div>
     </div>
+
     <v-container class="scrolly-text py-0">
       <v-row class="wrap justify-center align-start step">
         <div data-step="2-1" class="text-block">
@@ -77,17 +102,24 @@
 </template>
 <script>
 import MapSecond from "./controller/MapSecond.vue";
+import VueSlider from "vue-slider-component";
+import "vue-slider-component/theme/default.css";
 import { mapGetters } from "vuex";
 export default {
   name: "MapScroll2",
   data: () => {
-    return {};
+    return {
+      value: "2018-01-01",
+      data: ["2018-01", "2018-02", "2018-03", "2018-04"],
+      isPlay: false,
+    };
   },
   computed: {
     ...mapGetters("mapView", ["currentPage", "step"]),
   },
   components: {
     MapSecond,
+    VueSlider,
   },
   mounted() {
     this.initScrollama();
@@ -117,8 +149,38 @@ export default {
     handlePageState(direction, currentStep) {
       console.log(direction);
     },
+    pause() {
+      this.isPlay = !this.isPlay;
+    },
+    getTime() {},
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.player-btn {
+  /* left: 5px;
+  bottom: 10px;
+  top: 10px; */
+  top: 17px;
+}
+.custom-tooltip {
+  transform: translateY(5px);
+}
+.custom-tooltip {
+  font-weight: bold;
+  font-size: 0.5em;
+}
+#slideContainer {
+  background-color: #757575;
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  right: 10%;
+  height: 100px;
+  /* top: calc(100%-100px); */
+  bottom: 10%;
+  padding: 40px 40px 40px 120px;
+  z-index: 99;
+}
+</style>
