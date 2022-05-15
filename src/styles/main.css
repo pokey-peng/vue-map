@@ -3,7 +3,22 @@ html {
   font-family: Tahoma, Arial, "PingFang SC", "Hiragino Sans GB",
     "Microsoft YaHei", sans-serif;
 }
-
+.row {
+  margin: 0;
+}
+.scrolly-side {
+  position: relative;
+  margin: 0;
+}
+.scrolly-side .scrolly-sticky {
+  height: calc(100vh - 64px);
+  position: sticky;
+  top: 64px;
+  transform: translateZ(0);
+}
+.scrolly-overlay {
+  position: relative;
+}
 .scrolly-overlay .scrolly-sticky {
   -webkit-transform: translateZ(0);
   height: calc(100vh - 64px);
@@ -28,11 +43,20 @@ html {
   height: calc(100vh - 64px);
   z-index: 2;
 }
+.scrolly-side .scrolly-text .step {
+  height: calc(100vh - 64px);
+  z-index: 2;
+  margin: 0;
+}
 .scrolly-overlay .scrolly-text .step .text-block {
   background-color: #444;
   border-radius: 4px;
   opacity: 0.9;
   z-index: 3;
+}
+.scrolly-side .scrolly-text .step .text-block {
+  background-color: #444;
+  border-radius: 4px;
 }
 /* .scrolly-overlay .scrolly-text-side-bar .step .text-block {
   background-color: #444;

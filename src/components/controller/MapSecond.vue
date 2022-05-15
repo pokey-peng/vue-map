@@ -12,6 +12,7 @@ export default {
   },
   async mounted() {
     this.initMap();
+    this.initLayer();
   },
   computed: {
     ...mapGetters("mapView", ["currentPage", "step"]),
@@ -22,6 +23,7 @@ export default {
       console.log(this.step);
       if (this.step === "2-5") return;
       map.flyTo(this.mapOptions(this.step));
+      this.setLayer(this.step);
     },
   },
   methods: {
@@ -31,13 +33,32 @@ export default {
       // eslint-disable-next-line
       map = new this.$mapboxgl.Map({
         container: "map",
-        style: "mapbox://styles/mapbox/dark-v10",
+        style: "mapbox://styles/pokeycn/cl303i6sz000h14mf2zjl04qe",
         center: [-36, 45],
         boxZoom: true,
         dragRotate: true,
         zoom: 2.77,
         scrollZoom: false,
       });
+    },
+    initLayer() {
+      map.on("load", () => {
+        const visibility = map.getLayoutProperty(
+          "fulleureapu-chaa6i",
+          "visibility"
+        );
+        //console.log(visibility);
+        if (visibility === "visible" || visibility === undefined) {
+          map.setLayoutProperty("fulleureapu-chaa6i", "visibility", "none");
+        }
+      });
+    },
+    setLayer(stepId) {
+      switch (stepId) {
+        case "2-3":
+          map.setLayoutProperty("fulleureapu-chaa6i", "visibility", "visible");
+          break;
+      }
     },
   },
 };

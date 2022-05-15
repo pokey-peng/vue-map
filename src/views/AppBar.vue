@@ -51,7 +51,7 @@ export default {
       items: {
         landing: "landing",
         MapScroll: "map-container-2",
-        EchartsScroll: "index.html#EchartsScroll",
+        EchartsContainer: "EchartsContainer",
       },
       offset: true,
     };
