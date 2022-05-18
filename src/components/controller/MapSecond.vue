@@ -20,8 +20,11 @@ export default {
   },
   watch: {
     step() {
-      console.log(this.step);
+      //console.log(this.step);
       if (this.step === "2-5") return;
+      let flyOption = this.mapOptions(this.step);
+      // flyOption["speed"] = 0.8;
+      // flyOption["curve"] = 1.0;
       map.flyTo(this.mapOptions(this.step));
       this.setLayer(this.step);
     },

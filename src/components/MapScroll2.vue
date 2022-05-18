@@ -30,6 +30,9 @@
 
     <v-container class="scrolly-text py-0">
       <v-row class="wrap justify-center align-start step">
+        <div data-step="2-0" class="text-block"></div>
+      </v-row>
+      <v-row class="wrap justify-center align-start step">
         <div data-step="2-1" class="text-block">
           <v-container>
             <h2 class="h5 mb-lg-3">北约源起</h2>
@@ -86,6 +89,9 @@
       </v-row>
     </v-container>
     <v-container class="scrolly-text scrolly-text-side-bar py-0">
+      <v-row class="wrap justify-center align-start step">
+        <div data-step="2-5-0" class="text-block"></div>
+      </v-row>
       <v-row class="wrap justify-center align-center step">
         <div data-step="2-6" class="text-block">
           <v-container>

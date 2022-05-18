@@ -13,6 +13,8 @@ import {
 import { LineChart, PieChart } from "echarts/charts";
 import { UniversalTransition, LabelLayout } from "echarts/features";
 import { CanvasRenderer } from "echarts/renderers";
+import { mapGetters } from "vuex";
+
 let myChart;
 export default {
   name: "EchartsBar",

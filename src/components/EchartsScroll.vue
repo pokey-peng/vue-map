@@ -4,6 +4,9 @@
       <v-row class="scrolly-side">
         <v-col class="scrolly-text pa-0" cols="3">
           <v-row class="wrap justify-center align-start step">
+            <div data-step="3-0" class="text-block"></div>
+          </v-row>
+          <v-row class="wrap justify-center align-start step">
             <div data-step="3-1" class="text-block">
               <v-container>
                 <h2 class="h5 mb-lg-3">北约源起</h2>
@@ -27,7 +30,7 @@
           </v-row>
         </v-col>
         <v-col class="scrolly-sticky pa-0" cols="9">
-          <EchartsBar />
+          <component :is="renderEchart"></component>
         </v-col>
       </v-row>
     </v-container>
@@ -35,13 +38,50 @@
 </template>
 <script>
 import EchartsBar from "./controller/EchartsBar";
+import EchartsGeo from "./controller/EchartsGeo";
+import { mapGetters } from "vuex";
 export default {
   name: "EchatsScroll",
   components: {
     EchartsBar,
+    EchartsGeo,
   },
   data: () => {
     return {};
+  },
+  computed: {
+    ...mapGetters("mapView", ["currentPage", "step"]),
+    renderEchart() {
+      switch (this.step) {
+        case "3-0":
+          return "EchartsBar";
+        case "3-1":
+          return "EchartsGeo";
+        default:
+          return "EchartsBar";
+      }
+    },
+  },
+  mounted() {
+    this.initScrollama();
+  },
+  methods: {
+    initScrollama() {
+      const ScrollamaMapSecond = this.$scrollama();
+      ScrollamaMapSecond.setup({
+        step: "#EchartsContainer .scrolly-text .step",
+        offset: 64 / window.innerHeight,
+      })
+        .onStepEnter(this.handleStepEnter)
+        .onStepExit((response) => {
+          //console.log(response);
+        });
+    },
+    handleStepEnter(response) {
+      const currentStep = response.element.children[0].dataset["step"];
+      this.$store.dispatch("mapView/updateStep", currentStep);
+      console.log("this enter " + currentStep);
+    },
   },
 };
 </script>
