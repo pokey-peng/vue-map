@@ -49,8 +49,8 @@ export default {
   data() {
     return {
       items: {
-        landing: "landing",
-        MapScroll: "map-container-2",
+        welcome: "welcome",
+        MapScroll: "map-container-1",
         EchartsContainer: "EchartsContainer",
       },
       offset: true,

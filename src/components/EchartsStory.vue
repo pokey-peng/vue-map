@@ -41,7 +41,7 @@ import EchartsBar from "./controller/EchartsBar";
 import EchartsGeo from "./controller/EchartsGeo";
 import { mapGetters } from "vuex";
 export default {
-  name: "EchatsScroll",
+  name: "EchatsStory",
   components: {
     EchartsBar,
     EchartsGeo,

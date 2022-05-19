@@ -1,23 +1,23 @@
 <template>
   <div class="container-wrapper">
-    <MapScroll />
-    <MapScroll2 />
-    <EchartsScroll />
+    <Welcome />
+    <MapStoryFirst />
+    <EchartsStory />
   </div>
 </template>
 <script>
-import MapScroll from "../components/MapScroll.vue";
-import MapScroll2 from "../components/MapScroll2.vue";
-import EchartsScroll from "../components/EchartsScroll.vue";
+import Welcome from "../components/Welcome.vue";
+import MapStoryFirst from "../components/MapStoryFirst.vue";
+import EchartsStory from "../components/EchartsStory.vue";
 export default {
   name: "MapApp",
   data() {
     return {};
   },
   components: {
-    MapScroll,
-    MapScroll2,
-    EchartsScroll,
+    Welcome,
+    MapStoryFirst,
+    EchartsStory,
   },
 };
 </script>

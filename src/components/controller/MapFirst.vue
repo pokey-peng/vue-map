@@ -6,7 +6,7 @@
 import { mapGetters } from "vuex";
 let map;
 export default {
-  name: "MapSecond",
+  name: "MapFirst",
   data: () => {
     return {};
   },
@@ -22,7 +22,7 @@ export default {
     step() {
       //console.log(this.step);
       if (this.step === "2-5") return;
-      let flyOption = this.mapOptions(this.step);
+      // let flyOption = this.mapOptions(this.step);
       // flyOption["speed"] = 0.8;
       // flyOption["curve"] = 1.0;
       map.flyTo(this.mapOptions(this.step));
@@ -34,9 +34,11 @@ export default {
       this.$mapboxgl.accessToken =
         "pk.eyJ1IjoicG9rZXljbiIsImEiOiJjbDJrNmVoOG8wMG82M2Rubm9qeGdxdTZuIn0.l37o005heOdClDI8RY__eg";
       // eslint-disable-next-line
+      // mapbox://styles/pokeycn/cl303i6sz000h14mf2zjl04qe
       map = new this.$mapboxgl.Map({
         container: "map",
-        style: "mapbox://styles/pokeycn/cl303i6sz000h14mf2zjl04qe",
+        style:
+          "https://api.mapbox.com/styles/v1/bd123/cl373u8jd000q14qe7cd1bg62.html?title=copy&access_token=pk.eyJ1IjoiYmQxMjMiLCJhIjoiY2t0MWFxdmt2MGJ0cDMxcGsxY202MGVhcSJ9.WlassP108oPcZ0XS8ztwxA&zoomwheel=true&fresh=true#3.01/51.88/13.84",
         center: [-36, 45],
         boxZoom: true,
         dragRotate: true,

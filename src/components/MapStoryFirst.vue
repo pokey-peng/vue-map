@@ -1,7 +1,7 @@
 <template>
-  <section id="map-container-2" class="scrolly-overlay">
+  <section id="map-container-1" class="scrolly-overlay">
     <div class="scrolly-sticky">
-      <MapSecond />
+      <MapFirst />
       <div id="slideContainer" v-show="currentPage === 1 ? true : false">
         <v-btn
           class="player-btn rounded-circle"
@@ -90,7 +90,7 @@
     </v-container>
     <v-container class="scrolly-text scrolly-text-side-bar py-0">
       <v-row class="wrap justify-center align-start step">
-        <div data-step="2-5-0" class="text-block"></div>
+        <div data-step="2-6-0" class="text-block"></div>
       </v-row>
       <v-row class="wrap justify-center align-center step">
         <div data-step="2-6" class="text-block">
@@ -129,12 +129,12 @@
   </section>
 </template>
 <script>
-import MapSecond from "./controller/MapSecond.vue";
+import MapFirst from "./controller/MapFirst.vue";
 import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/default.css";
 import { mapGetters } from "vuex";
 export default {
-  name: "MapScroll2",
+  name: "MapStoryFirst",
   data: () => {
     return {
       value: "2018-01-01",
@@ -146,7 +146,7 @@ export default {
     ...mapGetters("mapView", ["currentPage", "step"]),
   },
   components: {
-    MapSecond,
+    MapFirst,
     VueSlider,
   },
   mounted() {
@@ -156,7 +156,7 @@ export default {
     initScrollama() {
       const ScrollamaMapSecond = this.$scrollama();
       ScrollamaMapSecond.setup({
-        step: "#map-container-2 .scrolly-text .step",
+        step: "#map-container-1 .scrolly-text .step",
         offset: 64 / window.innerHeight,
       })
         .onStepEnter(this.handleStepEnter)

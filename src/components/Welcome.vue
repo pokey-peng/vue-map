@@ -1,5 +1,5 @@
 <template>
-  <section id="landing" class="scrolly-overlay">
+  <section id="welcome" class="scrolly-overlay">
     <div class="scrolly-sticky">
       <div class="video-wrapper">
         <!-- <video
@@ -16,7 +16,7 @@
       </div>
     </div>
     <v-container class="scrolly-text py-0">
-      <div class="step" data-step="1">
+      <div class="step" data-step="1-0">
         <v-row
           class="wrap fill-height justify-center align-content-center"
           style="position: relative"
@@ -39,7 +39,7 @@
         </v-row>
       </div>
 
-      <div class="step" data-step="2">
+      <div class="step" data-step="1-1">
         <v-row class="wrap fill-height align-center" style="position: relative">
           <div class="text-block text-center">
             <p class="headline white--text mb-3 mt-3">
@@ -55,7 +55,7 @@
         </v-row>
       </div>
 
-      <div class="step" data-step="3">
+      <div class="step" data-step="1-2">
         <v-row class="wrap fill-height align-center" style="position: relative">
           <div class="text-block text-center">
             <p class="headline white--text mb-5">
@@ -69,7 +69,7 @@
 </template>
 <script>
 export default {
-  name: "MapScroll",
+  name: "WelcomePage",
   data: () => {
     return {};
   },
@@ -80,8 +80,8 @@ export default {
     initScrollama() {
       const scroller = this.$scrollama();
       scroller.setup({
-        graphic: "#landing .scrolly-sticky",
-        step: "#landing .scrolly-text .step", // required
+        graphic: "#welcome .scrolly-sticky",
+        step: "#welcome .scrolly-text .step", // required
         offset: 64 / window.innerHeight, // after navbar height
       });
     },
@@ -90,7 +90,7 @@ export default {
 </script>
 
 <style scoped>
-#landing {
+#welcome {
   font-size: 15px;
 }
 .step {
@@ -103,7 +103,7 @@ export default {
   z-index: 2;
   max-width: 45rem;
 }
-#landing .scrolly-sticky {
+#welcome .scrolly-sticky {
   /* position: -webkit-sticky;
   position: sticky; */
   /* top: 64px; */
@@ -132,7 +132,7 @@ export default {
   right: 0;
   top: 0;
 }
-#landing .scrolly-text .step .text-block {
+#welcome .scrolly-text .step .text-block {
   background-color: transparent;
 }
 .headline {
