@@ -1,8 +1,8 @@
 <template>
   <section id="map-container-1" class="scrolly-overlay">
-    <div class="scrolly-sticky">
+    <div class="scrolly-sticky" :class="{ interactive: step === '2-7' }">
       <MapFirst />
-      <div id="slideContainer" v-show="currentPage === 1 ? true : false">
+      <div id="slideContainer" v-show="currentPage === 7 ? true : false">
         <v-btn
           class="player-btn rounded-circle"
           elevation="3"
@@ -15,7 +15,7 @@
           <v-icon>{{ isPlay ? "mdi-pause" : "mdi-play" }}</v-icon>
         </v-btn>
         <vue-slider
-          ref="slideM"
+          ref="slide"
           v-model="value"
           :data="data"
           :marks="true"
@@ -46,7 +46,7 @@
       <v-row class="wrap justify-center align-start step">
         <div data-step="2-2" class="text-block">
           <v-container>
-            <h2 class="h5 mb-lg-3">北约源起</h2>
+            <h2 class="h5 mb-lg-3">创始成员国</h2>
             <p class="body-2">
               我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
               无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
@@ -57,7 +57,7 @@
       <v-row class="wrap justify-center align-start step">
         <div data-step="2-3" class="text-block">
           <v-container>
-            <h2 class="h5 mb-lg-3">北约源起</h2>
+            <h2 class="h5 mb-lg-3">第一次和第二次东扩</h2>
             <p class="body-2">
               我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
               无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
@@ -68,7 +68,7 @@
       <v-row class="wrap justify-center align-start step">
         <div data-step="2-4" class="text-block">
           <v-container>
-            <h2 class="h5 mb-lg-3">北约源起</h2>
+            <h2 class="h5 mb-lg-3">第三次东扩</h2>
             <p class="body-2">
               我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
               无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
@@ -79,7 +79,7 @@
       <v-row class="wrap justify-center align-start step">
         <div data-step="2-5" class="text-block">
           <v-container>
-            <h2 class="h5 mb-lg-3">北约源起</h2>
+            <h2 class="h5 mb-lg-3">第四次东扩</h2>
             <p class="body-2">
               我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
               无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
@@ -92,10 +92,10 @@
       <v-row class="wrap justify-center align-start step">
         <div data-step="2-6-0" class="text-block"></div>
       </v-row>
-      <v-row class="wrap justify-center align-center step">
+      <v-row class="wrap justify-center align-start step">
         <div data-step="2-6" class="text-block">
           <v-container>
-            <h2 class="h5 mb-lg-3">北约源起-侧栏</h2>
+            <h2 class="h5 mb-lg-3">第五次东扩</h2>
             <p class="body-2">
               我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
               无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
@@ -103,10 +103,10 @@
           </v-container>
         </div>
       </v-row>
-      <v-row class="wrap justify-center align-center step">
+      <v-row class="wrap justify-center align-start step">
         <div data-step="2-7" class="text-block">
           <v-container>
-            <h2 class="h5 mb-lg-3">北约源起-侧栏</h2>
+            <h2 class="h5 mb-lg-3">最后三次</h2>
             <p class="body-2">
               我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
               无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
@@ -114,15 +114,15 @@
           </v-container>
         </div>
       </v-row>
-      <v-row class="wrap justify-center align-center step">
+      <v-row class="wrap justify-center align-start step">
         <div data-step="2-8" class="text-block">
-          <v-container>
-            <h2 class="h5 mb-lg-3">北约源起-侧栏</h2>
+          <!-- <v-container>
+            <h2 class="h5 mb-lg-3">移动</h2>
             <p class="body-2">
               我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
               无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
             </p>
-          </v-container>
+          </v-container> -->
         </div>
       </v-row>
     </v-container>
@@ -137,9 +137,20 @@ export default {
   name: "MapStoryFirst",
   data: () => {
     return {
-      value: "2018-01-01",
-      data: ["2018-01", "2018-02", "2018-03", "2018-04"],
+      value: "1949",
+      data: [
+        "1949",
+        "1952",
+        "1955",
+        "1982",
+        "1999",
+        "2004",
+        "2009",
+        "2017",
+        "2020",
+      ],
       isPlay: false,
+      timeId: null,
     };
   },
   computed: {
@@ -160,25 +171,48 @@ export default {
         offset: 64 / window.innerHeight,
       })
         .onStepEnter(this.handleStepEnter)
-        .onStepExit((response) => {
-          //console.log(response);
-        });
+        .onStepExit(this.handleStepExit);
     },
     handleStepEnter(response) {
       //console.log(response);
       const currentStep = response.element.children[0].dataset["step"];
       //console.log(currentStep);
       // update view state
-      this.$store.dispatch("mapView/updateStep", currentStep);
-
+      if (response.direction === "up" && currentStep == "2-0") {
+        this.$store.dispatch("mapView/updateStep", currentStep);
+      } else {
+        this.$store.dispatch("mapView/updateStep", currentStep);
+      }
       // handle page state
       this.handlePageState(response.direction, currentStep);
     },
+    handleStepExit(response) {
+      const currentStep = response.element.children[0].dataset["step"];
+      if (currentStep == "2-7") {
+        this.$store.dispatch("mapView/updatePage", 1);
+      }
+    },
     handlePageState(direction, currentStep) {
-      console.log(direction);
+      if (currentStep == "2-7") {
+        this.$store.dispatch("mapView/updatePage", 7);
+      }
     },
     pause() {
       this.isPlay = !this.isPlay;
+      if (this.isPlay) {
+        this.timeId = setTimeout(this.expansionAnimate, 1000);
+      } else {
+        clearTimeout(this.timeId);
+      }
+    },
+    expansionAnimate() {
+      let index = this.$refs.slide.getIndex();
+      console.log(index);
+      index = index === this.data.length - 1 ? 0 : index + 1;
+      this.$refs.slide.setValue(this.data[index]);
+      //this.filterBy(this.data[index], "single");
+      this.$store.dispatch("mapView/updateYear", this.data[index]);
+      this.timeId = setTimeout(this.expansionAnimate, 1000);
     },
     getTime() {},
   },
@@ -209,6 +243,6 @@ export default {
   /* top: calc(100%-100px); */
   bottom: 10%;
   padding: 40px 40px 40px 120px;
-  z-index: 99;
+  z-index: 2;
 }
 </style>

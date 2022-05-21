@@ -2,6 +2,7 @@ const state = {
   page: 1,
   step: 0,
   cameraView: 0,
+  year: 1949,
 };
 
 const mutations = {
@@ -13,6 +14,9 @@ const mutations = {
   },
   setCameraView(state, cameraViewId) {
     state.cameraView = cameraViewId;
+  },
+  setYear(state, year) {
+    state.year = year;
   },
 };
 
@@ -26,12 +30,16 @@ const actions = {
   updateCameraView({ commit }, cameraViewId) {
     commit("setCameraView", cameraViewId);
   },
+  updateYear({ commit }, currentYear) {
+    commit("setYear", currentYear);
+  },
 };
 
 const getters = {
   currentPage: (state) => state.page,
   step: (state) => state.step,
   cameraView: (state) => state.cameraView,
+  currentYear: (state) => state.year,
 };
 
 export default {

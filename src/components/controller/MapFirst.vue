@@ -4,6 +4,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { setLayerOpacity } from "../../lib/SetLayer";
 let map;
 export default {
   name: "MapFirst",
@@ -15,18 +16,19 @@ export default {
     this.initLayer();
   },
   computed: {
-    ...mapGetters("mapView", ["currentPage", "step"]),
+    ...mapGetters("mapView", ["currentPage", "step", "currentYear"]),
     ...mapGetters("mapState", ["mapOptions"]),
   },
   watch: {
     step() {
-      //console.log(this.step);
-      if (this.step === "2-5") return;
-      // let flyOption = this.mapOptions(this.step);
-      // flyOption["speed"] = 0.8;
-      // flyOption["curve"] = 1.0;
-      map.flyTo(this.mapOptions(this.step));
+      console.log(this.step);
+      if (this.mapOptions(this.step) === null) return;
+      map.flyTo(this.mapOptions(this.step)["camera"]);
       this.setLayer(this.step);
+    },
+    currentYear() {
+      console.log(this.currentYear);
+      this.filterByYear(Number(this.currentYear));
     },
   },
   methods: {
@@ -34,36 +36,42 @@ export default {
       this.$mapboxgl.accessToken =
         "pk.eyJ1IjoicG9rZXljbiIsImEiOiJjbDJrNmVoOG8wMG82M2Rubm9qeGdxdTZuIn0.l37o005heOdClDI8RY__eg";
       // eslint-disable-next-line
+      // pk.eyJ1IjoicG9rZXljbiIsImEiOiJjbDJrNmVoOG8wMG82M2Rubm9qeGdxdTZuIn0.l37o005heOdClDI8RY__eg
+      // pk.eyJ1IjoiYmQxMjMiLCJhIjoiY2t0MWFxdmt2MGJ0cDMxcGsxY202MGVhcSJ9.WlassP108oPcZ0XS8ztwxA
       // mapbox://styles/pokeycn/cl303i6sz000h14mf2zjl04qe
       map = new this.$mapboxgl.Map({
         container: "map",
-        style:
-          "https://api.mapbox.com/styles/v1/bd123/cl373u8jd000q14qe7cd1bg62.html?title=copy&access_token=pk.eyJ1IjoiYmQxMjMiLCJhIjoiY2t0MWFxdmt2MGJ0cDMxcGsxY202MGVhcSJ9.WlassP108oPcZ0XS8ztwxA&zoomwheel=true&fresh=true#3.01/51.88/13.84",
-        center: [-36, 45],
+        style: "mapbox://styles/pokeycn/cl3d1w72z000014qfbg1cf28d",
+        center: [-28, 39],
         boxZoom: true,
-        dragRotate: true,
-        zoom: 2.77,
+        dragRotate: false,
+        zoom: 1.89,
         scrollZoom: false,
       });
     },
     initLayer() {
       map.on("load", () => {
-        const visibility = map.getLayoutProperty(
-          "fulleureapu-chaa6i",
-          "visibility"
-        );
-        //console.log(visibility);
-        if (visibility === "visible" || visibility === undefined) {
-          map.setLayoutProperty("fulleureapu-chaa6i", "visibility", "none");
-        }
+        map.setPaintProperty("NOTA", "fill-opacity", 0, {});
       });
     },
     setLayer(stepId) {
-      switch (stepId) {
-        case "2-3":
-          map.setLayoutProperty("fulleureapu-chaa6i", "visibility", "visible");
-          break;
+      let layerSetting = this.mapOptions(this.step).onStepEnter;
+      if (layerSetting.length > 0) {
+        layerSetting.forEach((layer) => {
+          setLayerOpacity(layer, map);
+        });
       }
+    },
+    filterByYear(year, mode = "multi") {
+      let filterExpress =
+        mode === "single"
+          ? ["match", ["get", "JoinTime"], [year], 1, 0]
+          : ["case", ["<=", ["get", "JoinTime"], year], 1, 0];
+      let options = {};
+      // let transitionProp = "fill-opacity" + "-transition";
+      // options = { duration: 0.3 };
+      // map.setPaintProperty("NOTA", transitionProp, options);
+      map.setPaintProperty("NOTA", "fill-opacity", filterExpress, options);
     },
   },
 };
