@@ -1,7 +1,7 @@
 <template>
   <section id="map-container-1" class="scrolly-overlay">
     <div class="scrolly-sticky" :class="{ interactive: step === '2-7' }">
-      <MapFirst />
+      <MapFirst :yearLabel="switchYear" />
       <div id="slideContainer" v-show="currentPage === 7 ? true : false">
         <v-btn
           class="player-btn rounded-circle"
@@ -19,12 +19,35 @@
           v-model="value"
           :data="data"
           :marks="true"
-          @change="getTime"
+          @change="changeYear"
         >
           <template v-slot:tooltip="{ value, focus }">
             <div :class="['custom-tooltip', { focus }]">{{ value }}</div>
           </template>
         </vue-slider>
+      </div>
+      <div class="legendCard" v-show="currentPage === 7 ? true : false">
+        <v-card flat light class="legendText">
+          <v-card-text>
+            <v-row wrap>
+              <div class="flex xs12">
+                <h4 class="body-2 font-weight-bold">扩张之路</h4>
+                <v-switch
+                  v-for="time in data"
+                  :key="time"
+                  v-model="switchLabel"
+                  color="primary"
+                  :value="time"
+                >
+                  <template v-slot:label>
+                    <div class="legend-block" :style="switchStyle(time)"></div>
+                    {{ time }}
+                  </template>
+                </v-switch>
+              </div>
+            </v-row>
+          </v-card-text>
+        </v-card>
       </div>
     </div>
 
@@ -149,12 +172,19 @@ export default {
         "2017",
         "2020",
       ],
+      switchLabel: [],
       isPlay: false,
       timeId: null,
     };
   },
+  watch: {},
   computed: {
     ...mapGetters("mapView", ["currentPage", "step"]),
+    switchYear() {
+      return this.switchLabel.map((item) => {
+        return Number(item);
+      });
+    },
   },
   components: {
     MapFirst,
@@ -214,7 +244,18 @@ export default {
       this.$store.dispatch("mapView/updateYear", this.data[index]);
       this.timeId = setTimeout(this.expansionAnimate, 1000);
     },
-    getTime() {},
+    changeYear() {
+      let index = this.$refs.slide.getIndex();
+      this.$store.dispatch("mapView/updateYear", this.data[index]);
+    },
+    switchStyle(time) {
+      switch (time) {
+        case "1949":
+          return "background-color: rgba(22,44,77,0.8)";
+        default:
+          return "background-color: rgba(221,76,90,0.8)";
+      }
+    },
   },
 };
 </script>
@@ -234,15 +275,24 @@ export default {
   font-size: 0.5em;
 }
 #slideContainer {
-  background-color: #757575;
+  background-color: rgba(117, 117, 117, 0.6);
   position: absolute;
   width: 80%;
   left: 10%;
   right: 10%;
   height: 100px;
-  /* top: calc(100%-100px); */
   bottom: 10%;
   padding: 40px 40px 40px 120px;
   z-index: 2;
+  border-radius: 2rem;
+}
+
+.legendCard {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  height: 20%;
+  width: 10%;
+  z-index: 3;
 }
 </style>

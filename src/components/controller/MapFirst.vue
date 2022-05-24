@@ -8,6 +8,7 @@ import { setLayerOpacity } from "../../lib/SetLayer";
 let map;
 export default {
   name: "MapFirst",
+  props: { yearLabel: Array },
   data: () => {
     return {};
   },
@@ -22,13 +23,24 @@ export default {
   watch: {
     step() {
       console.log(this.step);
-      if (this.mapOptions(this.step) === null) return;
-      map.flyTo(this.mapOptions(this.step)["camera"]);
-      this.setLayer(this.step);
+      let option = this.mapOptions(this.step);
+      if (option === null || option === undefined) {
+        return;
+      }
+      console.log(option);
+      map.flyTo(option["camera"]);
+      this.setLayer(option["onStepEnter"]);
     },
     currentYear() {
       console.log(this.currentYear);
       this.filterByYear(Number(this.currentYear));
+    },
+    yearLabel(newVal) {
+      let expression =
+        newVal.length !== 0 ? ["match", ["get", "JoinTime"], newVal, 1, 0] : 0;
+      let options = {};
+      console.log(expression);
+      map.setPaintProperty("NOTA", "fill-opacity", expression, options);
     },
   },
   methods: {
@@ -54,8 +66,8 @@ export default {
         map.setPaintProperty("NOTA", "fill-opacity", 0, {});
       });
     },
-    setLayer(stepId) {
-      let layerSetting = this.mapOptions(this.step).onStepEnter;
+    setLayer(stepSetting) {
+      let layerSetting = stepSetting;
       if (layerSetting.length > 0) {
         layerSetting.forEach((layer) => {
           setLayerOpacity(layer, map);

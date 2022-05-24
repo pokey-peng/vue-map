@@ -88,5 +88,6 @@ export default {
 <style scoped>
 #EchartsContainer {
   position: relative;
+  background-color: rgb(186, 200, 207);
 }
 </style>

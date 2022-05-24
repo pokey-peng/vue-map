@@ -37,12 +37,8 @@ export default {
         UniversalTransition,
         LabelLayout,
       ]);
-      myChart = this.$echarts.init(
-        document.getElementById("echart-geo"),
-        "dark"
-      );
+      myChart = this.$echarts.init(document.getElementById("echart-geo"));
       let option;
-
       option && myChart.setOption(option);
     },
   },

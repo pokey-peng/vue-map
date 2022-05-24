@@ -171,7 +171,14 @@ const mutations = {};
 const actions = {};
 
 const getters = {
-  mapOptions: (state) => (viewId) => state.chapter[viewId] ?? null,
+  mapOptions: (state) => (viewId) => {
+    if (viewId in state.chapter) {
+      console.log(viewId);
+      return state.chapter[viewId];
+    } else {
+      return null;
+    }
+  },
   mapLayers: (state) => (viewId) =>
     state.settings.find((view) => view.id === viewId).layers,
 };

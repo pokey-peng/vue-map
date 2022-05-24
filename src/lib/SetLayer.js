@@ -10,7 +10,6 @@ let layerTypes = {
 
 function getLayerPaintType(layer, map) {
   let layerType = map.getLayer(layer).type;
-
   return layerTypes[layerType];
 }
 
