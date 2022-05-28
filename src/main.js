@@ -6,6 +6,7 @@ import vuetify from "./plugins/vuetify";
 import scrollama from "scrollama";
 import mapboxgl from "mapbox-gl";
 import * as echarts from "echarts";
+import "echarts-gl";
 
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./styles/main.css";

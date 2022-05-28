@@ -193,6 +193,11 @@ export default {
   mounted() {
     this.initScrollama();
   },
+  beforeDestroy() {
+    if (this.timeId) {
+      clearTimeout(this.timeId);
+    }
+  },
   methods: {
     initScrollama() {
       const ScrollamaMapSecond = this.$scrollama();

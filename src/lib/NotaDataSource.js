@@ -53,6 +53,9 @@ function getNotaAttrData() {
     });
     return country;
   });
+  countryList.sort((a, b) => {
+    return a[7] - b[7];
+  });
   data.push(countryList);
   return data;
 }

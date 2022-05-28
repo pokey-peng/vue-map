@@ -4,15 +4,6 @@
   </div>
 </template>
 <script>
-import {
-  DatasetComponent,
-  TooltipComponent,
-  GridComponent,
-  LegendComponent,
-} from "echarts/components";
-import { LineChart, PieChart } from "echarts/charts";
-import { UniversalTransition, LabelLayout } from "echarts/features";
-import { CanvasRenderer } from "echarts/renderers";
 import { mapGetters } from "vuex";
 
 let myChart;
@@ -21,24 +12,54 @@ export default {
   data: () => {
     return {};
   },
+  computed: {
+    ...mapGetters("mapView", ["currentPage", "step"]),
+  },
   mounted() {
     this.initEcharts();
   },
+  beforeDestroy() {
+    if (myChart) {
+      this.$echarts.dispose(myChart);
+    }
+  },
   methods: {
     initEcharts() {
-      this.$echarts.use([
-        DatasetComponent,
-        TooltipComponent,
-        GridComponent,
-        LegendComponent,
-        LineChart,
-        PieChart,
-        CanvasRenderer,
-        UniversalTransition,
-        LabelLayout,
-      ]);
       myChart = this.$echarts.init(document.getElementById("echart-geo"));
+      // let option;
+      // option && myChart.setOption(option);
+      let ROOT_PATH =
+        "https://fastly.jsdelivr.net/gh/apache/echarts-website@asf-site/examples";
       let option;
+
+      option = {
+        backgroundColor: "#000",
+        globe: {
+          baseTexture: ROOT_PATH + "/data-gl/asset/world.topo.bathy.200401.jpg",
+          heightTexture:
+            ROOT_PATH + "/data-gl/asset/world.topo.bathy.200401.jpg",
+          displacementScale: 0.04,
+          shading: "realistic",
+          environment: ROOT_PATH + "/data-gl/asset/starfield.jpg",
+          realisticMaterial: {
+            roughness: 0.9,
+          },
+          postEffect: {
+            enable: true,
+          },
+          light: {
+            main: {
+              intensity: 5,
+              shadow: true,
+            },
+            ambientCubemap: {
+              texture: ROOT_PATH + "/data-gl/asset/pisa.hdr",
+              diffuseIntensity: 0.2,
+            },
+          },
+        },
+      };
+
       option && myChart.setOption(option);
     },
   },
