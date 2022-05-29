@@ -42,7 +42,7 @@ export default {
       myChart = this.$echarts.init(document.getElementById("echart"));
       let option = getInitBarOption();
       //let option = getMapOption();
-      console.log(option);
+      //console.log(option);
       myChart.setOption(option);
 
       option && myChart.setOption(option);

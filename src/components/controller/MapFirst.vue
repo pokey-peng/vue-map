@@ -22,7 +22,7 @@ export default {
   },
   watch: {
     step() {
-      console.log(this.step);
+      //(this.step);
       let option = this.mapOptions(this.step);
       if (option === null || option === undefined) {
         return;
@@ -32,14 +32,14 @@ export default {
       this.setLayer(option["onStepEnter"]);
     },
     currentYear() {
-      console.log(this.currentYear);
+      //console.log(this.currentYear);
       this.filterByYear(Number(this.currentYear));
     },
     yearLabel(newVal) {
       let expression =
         newVal.length !== 0 ? ["match", ["get", "JoinTime"], newVal, 1, 0] : 0;
       let options = {};
-      console.log(expression);
+      //console.log(expression);
       map.setPaintProperty("NOTA", "fill-opacity", expression, options);
     },
   },

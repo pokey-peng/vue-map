@@ -56,8 +56,33 @@ function getNotaAttrData() {
   countryList.sort((a, b) => {
     return a[7] - b[7];
   });
+  console.log(
+    "GDP最小值(十万美元): ",
+    countryList[0][7],
+    "  GDP最大值: ",
+    countryList[countryList.length - 1][7]
+  );
+  console.log(
+    "人口最小值: ",
+    countryList.reduce((pre, cur) => {
+      return pre[30] < cur[30] ? pre : cur;
+    })[30],
+    "人口最大值: ",
+    countryList.reduce((pre, cur) => {
+      return pre[30] > cur[30] ? pre : cur;
+    })[30]
+  );
   data.push(countryList);
+  console.log("源数据: ", data);
   return data;
 }
 
-export { getNotaAttrData };
+function getNotaDataSet() {
+  let dataOrigin = getNotaAttrData();
+  let dataset = { dimensions: [], source: [] };
+  dataset.dimensions = dataOrigin[0];
+  dataset.source = dataOrigin[1];
+  return dataset;
+}
+
+export { getNotaAttrData, getNotaDataSet };

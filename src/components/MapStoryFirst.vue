@@ -242,7 +242,7 @@ export default {
     },
     expansionAnimate() {
       let index = this.$refs.slide.getIndex();
-      console.log(index);
+      //console.log(index);
       index = index === this.data.length - 1 ? 0 : index + 1;
       this.$refs.slide.setValue(this.data[index]);
       //this.filterBy(this.data[index], "single");

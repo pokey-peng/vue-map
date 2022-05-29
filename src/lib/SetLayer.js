@@ -15,7 +15,7 @@ function getLayerPaintType(layer, map) {
 
 export function setLayerOpacity(layer, map) {
   let paintProps = getLayerPaintType(layer.layer, map);
-  console.log(paintProps);
+  //console.log(paintProps);
   paintProps.forEach(function (prop) {
     let options = {};
     if (layer.duration) {

@@ -60,7 +60,7 @@ export default {
     scrollTo(value) {
       let element = document.getElementById(value);
       // 打印出对应页面与窗口的距离
-      console.log(element.offsetTop);
+      //console.log(element.offsetTop);
       // 使用平滑属性，滑动到上方获取的距离
       // 下方我只设置了top，当然 你也可以加上 left 让他横向滑动
       // widow 根据浏览器滚动条，如果你是要在某个盒子里面产生滑动，记得修改

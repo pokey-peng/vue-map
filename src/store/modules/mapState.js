@@ -173,7 +173,7 @@ const actions = {};
 const getters = {
   mapOptions: (state) => (viewId) => {
     if (viewId in state.chapter) {
-      console.log(viewId);
+      //console.log(viewId);
       return state.chapter[viewId];
     } else {
       return null;

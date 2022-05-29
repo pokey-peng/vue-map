@@ -1,4 +1,4 @@
-import { getNotaAttrData } from "./NotaDataSource";
+import { getNotaAttrData, getNotaDataSet } from "./NotaDataSource";
 
 function getInitBarOption() {
   let option = {
@@ -56,9 +56,8 @@ function getInitBarOption() {
     polar: { center: ["50%", "53%"] },
     series: [],
   };
-  let dataOrigin = getNotaAttrData();
-  option["dataset"]["dimensions"] = dataOrigin[0];
-  option["dataset"]["source"] = dataOrigin[1];
+  let dataOrigin = getNotaDataSet();
+  option["dataset"] = dataOrigin;
   option["series"].push(generateSeries("GDP_MD"));
   option["series"].push(generateSeries("POP_EST"));
   return option;
@@ -67,7 +66,7 @@ function getMapOption() {
   let data = generateMapData("POP_EST");
   let GDPdata = generateMapData("GDP_MD");
   let dataOrigin = getNotaAttrData();
-  console.log("生成地图数据：", dataOrigin);
+  //console.log("生成地图数据：", dataOrigin);
   let mapOption = {
     visualMap: [
       {
@@ -122,6 +121,7 @@ function getMapOption() {
         center: [-28, 39],
         scaleLimit: { min: 2, max: 16 },
         map: "NOTA",
+        showLegendSymbol: false,
         animationDurationUpdate: 1000,
         universalTransition: true,
         nameProperty: "NAME_ZH",
@@ -134,6 +134,7 @@ function getMapOption() {
         roam: true,
         left: "10%",
         center: [-28, 39],
+        showLegendSymbol: false,
         scaleLimit: { min: 2, max: 16 },
         map: "NOTA",
         animationDurationUpdate: 1000,

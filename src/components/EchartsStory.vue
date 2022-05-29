@@ -76,6 +76,7 @@ export default {
     renderEchart() {
       switch (this.step) {
         case "3-0":
+          return "EchartsBar";
         case "3-1":
           return "EchartsBar";
         default:
@@ -101,7 +102,7 @@ export default {
     handleStepEnter(response) {
       const currentStep = response.element.children[0].dataset["step"];
       this.$store.dispatch("mapView/updateStep", currentStep);
-      console.log("this enter " + currentStep);
+      //console.log("this enter " + currentStep);
     },
   },
 };
