@@ -49,8 +49,7 @@ export default {
         "pk.eyJ1IjoicG9rZXljbiIsImEiOiJjbDJrNmVoOG8wMG82M2Rubm9qeGdxdTZuIn0.l37o005heOdClDI8RY__eg";
       // eslint-disable-next-line
       // pk.eyJ1IjoicG9rZXljbiIsImEiOiJjbDJrNmVoOG8wMG82M2Rubm9qeGdxdTZuIn0.l37o005heOdClDI8RY__eg
-      // pk.eyJ1IjoiYmQxMjMiLCJhIjoiY2t0MWFxdmt2MGJ0cDMxcGsxY202MGVhcSJ9.WlassP108oPcZ0XS8ztwxA
-      // mapbox://styles/pokeycn/cl303i6sz000h14mf2zjl04qe
+      // mapbox://styles/pokeycn/cl3d1w72z000014qfbg1cf28d
       map = new this.$mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/pokeycn/cl3d1w72z000014qfbg1cf28d",

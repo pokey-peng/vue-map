@@ -9,6 +9,7 @@ import axios from "axios";
 import { getNotaAttrData, getNotaDataSet } from "../../lib/NotaDataSource";
 
 let myChart;
+let mapChart;
 export default {
   name: "EchartsGeo",
   data: () => {
@@ -23,6 +24,7 @@ export default {
   beforeDestroy() {
     if (myChart) {
       this.$echarts.dispose(myChart);
+      this.$echarts.dispose(mapChart);
     }
   },
   methods: {
@@ -30,7 +32,7 @@ export default {
       const response = await axios.get("/GeoData/world.geojson");
       this.$echarts.registerMap("world", response.data);
       let canvas = document.createElement("canvas");
-      let mapChart = this.$echarts.init(canvas, null, {
+      mapChart = this.$echarts.init(canvas, null, {
         width: 4096,
         height: 2048,
       });

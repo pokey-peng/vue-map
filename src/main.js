@@ -10,11 +10,14 @@ import "echarts-gl";
 
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./styles/main.css";
+import * as d3 from "d3";
 
 Vue.config.productionTip = false;
 Vue.prototype.$scrollama = scrollama;
 Vue.prototype.$mapboxgl = mapboxgl;
 Vue.prototype.$echarts = echarts;
+Vue.prototype.$d3 = d3;
+
 new Vue({
   router,
   store,

@@ -50,6 +50,9 @@
               </v-container>
             </div>
           </v-row>
+          <v-row class="wrap justify-center align-start step">
+            <div data-step="3-5" class="text-block"></div>
+          </v-row>
         </v-col>
         <v-col class="scrolly-sticky pa-0" cols="9">
           <component :is="renderEchart"></component>
@@ -61,12 +64,14 @@
 <script>
 import EchartsBar from "./controller/EchartsBar";
 import EchartsGeo from "./controller/EchartsGeo";
+import D3Chart from "./controller/D3Chart";
 import { mapGetters } from "vuex";
 export default {
   name: "EchatsStory",
   components: {
     EchartsBar,
     EchartsGeo,
+    D3Chart,
   },
   data: () => {
     return {};
@@ -79,8 +84,14 @@ export default {
           return "EchartsBar";
         case "3-1":
           return "EchartsBar";
-        default:
+        case "3-3":
+          return "D3Chart";
+        case "3-4":
           return "EchartsGeo";
+        case "3-5":
+          return "EchartsGeo";
+        default:
+          return "EchartsBar";
       }
     },
   },
