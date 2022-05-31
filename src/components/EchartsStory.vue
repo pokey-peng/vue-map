@@ -84,6 +84,8 @@ export default {
           return "EchartsBar";
         case "3-1":
           return "EchartsBar";
+        case "3-2":
+          return "D3Chart";
         case "3-3":
           return "D3Chart";
         case "3-4":

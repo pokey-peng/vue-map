@@ -22,9 +22,9 @@ export default {
     this.initEcharts();
   },
   beforeDestroy() {
-    if (myChart) {
-      this.$echarts.dispose(myChart);
+    if (myChart && mapChart) {
       this.$echarts.dispose(mapChart);
+      this.$echarts.dispose(myChart);
     }
   },
   methods: {
@@ -65,7 +65,7 @@ export default {
       let dataset = getNotaAttrData();
       let data = (function () {
         let popIndex = dataset[0].indexOf("POP_EST");
-        let nameIndex = dataset[0].indexOf("NAME");
+        //let nameIndex = dataset[0].indexOf("NAME");
         let lngIndex = dataset[0].indexOf("LABEL_X");
         let LatIndex = dataset[0].indexOf("LABEL_Y");
         return dataset[1].map((item) => {

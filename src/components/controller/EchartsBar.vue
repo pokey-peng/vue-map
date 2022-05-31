@@ -17,7 +17,7 @@ import { mapGetters } from "vuex";
 import { getInitBarOption, getMapOption } from "../../lib/OptionSource";
 import axios from "axios";
 
-let myChart;
+let myChart = null;
 export default {
   name: "EchartsBar",
   data: () => {
