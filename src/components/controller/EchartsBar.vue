@@ -36,7 +36,9 @@ export default {
   },
   methods: {
     async initEcharts() {
-      const response = await axios.get("/GeoData/newEurope.geojson");
+      const response = await axios.get(
+        process.env.BASE_URL + "GeoData/newEurope.geojson"
+      );
       this.$echarts.registerMap("NOTA", response.data);
       //this.getUser();
       myChart = this.$echarts.init(document.getElementById("echart"));

@@ -93,12 +93,16 @@ export default {
               minMargin: 2,
               rich: {
                 USA: {
-                  backgroundColor: { image: "/icon/USA.png" },
+                  backgroundColor: {
+                    image: process.env.BASE_URL + "icon/USA.png",
+                  },
                   width: 20,
                   height: 20,
                 },
                 DEU: {
-                  backgroundColor: { image: "/icon/GER.png" },
+                  backgroundColor: {
+                    image: process.env.BASE_URL + "icon/GER.png",
+                  },
                   width: 20,
                   height: 20,
                 },

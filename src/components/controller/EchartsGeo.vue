@@ -29,7 +29,9 @@ export default {
   },
   methods: {
     async initEcharts() {
-      const response = await axios.get("/GeoData/world.geojson");
+      const response = await axios.get(
+        process.env.BASE_URL + "GeoData/world.geojson"
+      );
       this.$echarts.registerMap("world", response.data);
       let canvas = document.createElement("canvas");
       mapChart = this.$echarts.init(canvas, null, {
