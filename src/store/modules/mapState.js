@@ -37,7 +37,7 @@ const state = {
       },
       onStepEnter: [
         {
-          layer: "NOTA",
+          layer: "final Europe",
           opacity: 0,
         },
       ],
@@ -53,7 +53,7 @@ const state = {
       },
       onStepEnter: [
         {
-          layer: "NOTA",
+          layer: "final Europe",
           opacity: ["case", ["==", ["get", "JoinOrder"], 0], 0.8, 0],
         },
       ],
@@ -69,7 +69,7 @@ const state = {
       },
       onStepEnter: [
         {
-          layer: "NOTA",
+          layer: "final Europe",
           opacity: ["match", ["get", "JoinOrder"], [1, 3], 0.8, 0],
         },
       ],
@@ -87,7 +87,7 @@ const state = {
       },
       onStepEnter: [
         {
-          layer: "NOTA",
+          layer: "final Europe",
           opacity: ["match", ["get", "JoinOrder"], [2], 0.8, 0],
         },
       ],
@@ -104,7 +104,10 @@ const state = {
         curve: 1.0,
       },
       onStepEnter: [
-        { layer: "NOTA", opacity: ["match", ["get", "JoinOrder"], [4], 1, 0] },
+        {
+          layer: "final Europe",
+          opacity: ["match", ["get", "JoinOrder"], [4], 1, 0],
+        },
       ],
       onStepExit: {},
       layers: {},
@@ -120,7 +123,7 @@ const state = {
       },
       onStepEnter: [
         {
-          layer: "NOTA",
+          layer: "final Europe",
           opacity: ["match", ["get", "JoinOrder"], [5], 1, 0],
         },
       ],
@@ -138,7 +141,7 @@ const state = {
       },
       onStepEnter: [
         {
-          layer: "NOTA",
+          layer: "final Europe",
           opacity: ["match", ["get", "JoinOrder"], [7, 8, 6], 1, 0],
         },
       ],
@@ -147,7 +150,7 @@ const state = {
     },
     "2-7": {
       camera: {
-        center: { lon: -58.79705, lat: 53.68704 },
+        center: { lon: -30.79705, lat: 53.68704 },
         zoom: 2.65,
         pitch: 0.0,
         bearing: 0.0,
@@ -156,7 +159,7 @@ const state = {
       },
       onStepEnter: [
         {
-          layer: "NOTA",
+          layer: "final Europe",
           opacity: 1,
         },
       ],
