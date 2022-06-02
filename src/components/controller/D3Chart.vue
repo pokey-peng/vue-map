@@ -30,12 +30,20 @@ export default {
       let option = {
         dataset: {},
         grid: { bottom: "40%" },
-        xAxis: {
-          type: "category",
-          axisLine: { show: false },
-          axisTick: { show: false, alignWithLabel: true },
-          axisLabel: { interval: 0, rotate: 45 },
-        },
+        xAxis: [
+          {
+            type: "category",
+            axisLine: { show: false },
+            axisTick: { show: false, alignWithLabel: true },
+            axisLabel: { interval: 0, rotate: 45 },
+          },
+          {
+            type: "category",
+            axisLine: { show: false },
+            axisTick: { show: false, alignWithLabel: true },
+            axisLabel: { interval: 0, rotate: 45 },
+          },
+        ],
         yAxis: {
           show: false,
           type: "value",
@@ -51,6 +59,7 @@ export default {
             dimension: 7, // 指向第三列（列序号从 0 开始记，所以设置为 2）。
             min: 5500, // 需要给出数值范围，最小数值。
             max: 22000000, // 需要给出数值范围，最大数值。
+            seriesIndex: 0,
             itemWidth: 30,
             itemHeight: 120,
             calculable: true,
@@ -62,15 +71,39 @@ export default {
               color: ["#1a237e", "#33691e", "#b71c1c"],
             },
           },
+          {
+            show: false,
+            dimension: 30,
+            min: 1,
+            max: 350000000,
+            seriesIndex: 1,
+            inRange: {
+              symbolSize: [10, 100],
+              color: ["#1a237e", "#33691e", "#b71c1c"],
+            },
+          },
         ],
+        legend: {
+          top: "40%",
+          right: "1%",
+          formatter: function (name) {
+            return name == "NOTA_Pao" ? "经济" : "人口";
+          },
+          orient: "vertical",
+          data: ["NOTA_Pao", "NOTA_POP"],
+        },
         series: [
           {
             type: "scatter",
             name: "NOTA_Pao",
+            xAxisIndex: 0,
             encode: { x: "NAME_ZH", y: "yCoord" },
+            emphasis: {
+              focus: "series",
+            },
             labelLayout: {
-              y: "20%",
-              moveOverlap: "shiftX",
+              y: "30%",
+              //moveOverlap: "shiftX",
               draggable: true,
             },
             labelLine: {
@@ -109,13 +142,47 @@ export default {
               },
             },
           },
+          {
+            type: "scatter",
+            xAxisIndex: 1,
+            name: "NOTA_POP",
+            encode: { x: "NAME_ZH", y: "yCoord2" },
+            emphasis: {
+              focus: "series",
+            },
+            labelLine: {
+              show: true,
+              length2: 5,
+              lineStyle: {
+                color: "#bbb",
+              },
+            },
+            labelLayout: {
+              y: "30%",
+              moveOverlap: "shiftX",
+              draggable: true,
+            },
+            label: {
+              show: true,
+              formatter: function (params) {
+                //console.log(params.data[2]);
+                return "  ";
+              },
+
+              position: "top",
+              align: "center",
+              verticalAlign: "middle",
+            },
+          },
         ],
       };
       option.dataset = getNotaDataSet();
       console.log("真正源数据", option.dataset);
       option.dataset.dimensions.push("yCoord");
+      option.dataset.dimensions.push("yCoord2");
       option.dataset.source.forEach((item) => {
         item.push(0.8);
+        item.push(4.6);
       });
       console.log("气泡图配置项：", option);
       console.log("分割线");
