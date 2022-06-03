@@ -179,4 +179,33 @@ function generateSeries(yName) {
   series["name"] = yName.slice(0, 3);
   return series;
 }
-export { getInitBarOption, getMapOption };
+function getWarOption(name) {
+  let dataset = getNotaAttrData();
+  let data = (function () {
+    let popIndex = dataset[0].indexOf("POP_EST");
+    let lngIndex = dataset[0].indexOf("LABEL_X");
+    let LatIndex = dataset[0].indexOf("LABEL_Y");
+    return dataset[1].map((item) => {
+      return [item[lngIndex], item[LatIndex], item[popIndex]];
+    });
+  })();
+  let option = {
+    series: [
+      {
+        type: "bar3D",
+        name: "人口",
+        coordinateSystem: "globe",
+        shading: "lambert",
+        data: data,
+        barSize: 1.2,
+        minHeight: 0.2,
+        silent: false,
+        itemStyle: {
+          color: "orange",
+        },
+      },
+    ],
+  };
+  return option;
+}
+export { getInitBarOption, getMapOption, getWarOption };
