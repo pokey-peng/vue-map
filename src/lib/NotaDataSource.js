@@ -1,5 +1,7 @@
 import OriginData from "../../public/AttributeData/newEuropeAttribute.json";
 import * as axios from "axios";
+import warData from "../../public/AttributeData/war.json";
+
 function getNotaAttrData() {
   let dimension = [
     "ABBREV",
@@ -87,6 +89,18 @@ function getNotaDataSet() {
   dataset.source = dataOrigin[1];
   return dataset;
 }
+function generateWarData(name) {
+  name = name == "海湾" ? "伊拉克" : name;
+  let resultData = {};
+  warData.forEach((key) => {
+    if (key["名称"] !== name) {
+      return;
+    }
+    resultData = key["北约参战兵力"][0];
+  });
+  console.log("参战兵力", resultData);
+  return resultData;
+}
 async function getWarCountryData() {
   let response = await axios.get(
     process.env.BASE_URL + "GeoData/warCountry.geojson"
@@ -109,4 +123,4 @@ async function getWarCountryData() {
   //console.log("战争国家: ", data);
   return data;
 }
-export { getNotaAttrData, getNotaDataSet, getWarCountryData };
+export { getNotaAttrData, getNotaDataSet, getWarCountryData, generateWarData };

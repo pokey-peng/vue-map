@@ -1,4 +1,8 @@
-import { getNotaAttrData, getNotaDataSet } from "./NotaDataSource";
+import {
+  getNotaAttrData,
+  getNotaDataSet,
+  generateWarData,
+} from "./NotaDataSource";
 
 function getInitBarOption() {
   let option = {
@@ -179,7 +183,71 @@ function generateSeries(yName) {
   series["name"] = yName.slice(0, 3);
   return series;
 }
-function getWarOption(name) {
+function getWarOption(name, coord = []) {
+  console.log("点击名字:", name);
+  let warData = generateWarData(name);
+  let dataset = getNotaAttrData();
+  let data = (function () {
+    let optionData = [];
+    let nameIndex = dataset[0].indexOf("NAME_ZH");
+    let lngIndex = dataset[0].indexOf("LABEL_X");
+    let LatIndex = dataset[0].indexOf("LABEL_Y");
+    Object.keys(warData).forEach((key) => {
+      dataset[1].forEach((item) => {
+        if (item[nameIndex] !== key) {
+          return;
+        }
+        optionData.push([
+          item[lngIndex],
+          item[LatIndex],
+          warData[key],
+          { name: key },
+        ]);
+      });
+    });
+    optionData.push([19.490468, 51.990316, 2500, { name: "波兰" }]);
+    return optionData;
+  })();
+  let newData = (function () {
+    let result = data.map((item) => {
+      return [[item[0], item[1]], coord];
+    });
+    return result;
+  })();
+  console.log("参战兵力: ", data);
+  let option = {
+    series: [
+      {
+        type: "bar3D",
+        name: "参战兵力",
+        coordinateSystem: "globe",
+        shading: "lambert",
+        data: data,
+        bevelSize: 0.5,
+        minHeight: 1,
+        barSize: 2,
+        silent: false,
+        itemStyle: {
+          color: "orange",
+        },
+      },
+      {
+        type: "lines3D",
+        coordinateSystem: "globe",
+        blendMode: "lighter",
+        lineStyle: {
+          width: 2,
+          color: "#e0747f",
+          opacity: 1,
+        },
+        data: newData,
+      },
+    ],
+  };
+  return option;
+}
+
+function getGlobeOption(name, mapEcharts = null) {
   let dataset = getNotaAttrData();
   let data = (function () {
     let popIndex = dataset[0].indexOf("POP_EST");
@@ -189,23 +257,129 @@ function getWarOption(name) {
       return [item[lngIndex], item[LatIndex], item[popIndex]];
     });
   })();
-  let option = {
-    series: [
-      {
-        type: "bar3D",
-        name: "人口",
-        coordinateSystem: "globe",
-        shading: "lambert",
-        data: data,
-        barSize: 1.2,
-        minHeight: 0.2,
-        silent: false,
-        itemStyle: {
-          color: "orange",
+  let ROOT_PATH =
+    "https://fastly.jsdelivr.net/gh/apache/echarts-website@asf-site/examples";
+  return name !== "globe"
+    ? {
+        // dataset: getNotaDataSet(),
+        tooltip: {
+          show: true,
+          showContent: true,
+          enterable: true,
+          formatter: function (params) {
+            //console.log(params);
+            return `${params.seriesName} : ${params.data[1]}`;
+          },
         },
-      },
-    ],
-  };
-  return option;
+        geo: {
+          id: "baseGeo",
+          show: true,
+          map: "world",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          //center: [0, 40],
+          nameProperty: "NAME_ZH",
+          label: { show: true },
+          silent: true,
+          boundingCoords: [
+            [-180, 90],
+            [180, -90],
+          ],
+        },
+        series: [
+          {
+            type: "effectScatter",
+            coordinateSystem: "geo",
+            name: "curWar",
+            color: {
+              type: "radial",
+              x: 0.5,
+              y: 0.5,
+              r: 0.5,
+              colorStops: [
+                {
+                  offset: 0,
+                  color: "#f6d242", // 0% 处的颜色
+                },
+                {
+                  offset: 1,
+                  color: "#ff52e5", // 100% 处的颜色
+                },
+              ],
+              global: false, // 缺省为 false
+            },
+            geoIndex: 0,
+            data: [mapEcharts],
+            //rippleEffect: { color: "red" },
+            symbolSize: 15,
+            emphasis: {
+              focus: "self",
+              label: {
+                show: true,
+                formatter: function (params) {
+                  return params.data[2].name;
+                },
+              },
+              blurScope: "series",
+              itemStyle: { color: "yellow" },
+            },
+            zlevel: 10,
+            z: 10,
+            animationDurationUpdate: 2000,
+          },
+        ],
+      }
+    : {
+        backgroundColor: "#000",
+        globe: {
+          //baseTexture: ROOT_PATH + "/data-gl/asset/world.topo.bathy.200401.jpg",
+          baseTexture: mapEcharts,
+          // heightTexture:
+          //   ROOT_PATH + "/data-gl/asset/bathymetry_bw_composite_4k.jpg",
+          displacementScale: 0.04,
+          shading: "lambert",
+          environment: ROOT_PATH + "/data-gl/asset/starfield.jpg",
+          light: {
+            ambient: {
+              intensity: 0.4,
+            },
+            main: {
+              intensity: 0.4,
+            },
+          },
+          viewControl: {
+            autoRotate: false,
+            beta: 120,
+            alpha: 40,
+          },
+          //layers: [{ type: "overlay", name: "POP", texture: mapChart }],
+        },
+        // visualMap: {
+        //   max: 300000,
+        //   min: 100,
+        //   calculable: true,
+        //   realtime: true,
+        //   dimensions: 2,
+        //   seriesIndex: 0,
+        //   inRange: {
+        //     symbolSize: [10, 100],
+        //   },
+        //   outOfRange: {
+        //     symbolSize: 5,
+        //   },
+        // },
+        tooltip: {
+          show: true,
+          showContent: true,
+          enterable: true,
+          formatter: function (params) {
+            //console.log(params);
+            return `${params.data[3].name}\n${params.seriesName} : ${params.data[2]}`;
+          },
+        },
+        series: [],
+      };
 }
-export { getInitBarOption, getMapOption, getWarOption };
+export { getInitBarOption, getMapOption, getWarOption, getGlobeOption };

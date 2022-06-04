@@ -2,7 +2,7 @@
   <section id="welcome" class="scrolly-overlay">
     <div class="scrolly-sticky">
       <div class="video-wrapper">
-        <!-- <video
+        <video
           preload="none"
           poster="@/assets/img/mapscroll.png"
           ref="mapVideo"
@@ -10,9 +10,9 @@
           loop
           muted
         >
-          <source src="@/assets/video/video2.mp4" type="video/mp4" />
+          <source src="@/assets/video/feng.mp4" type="video/mp4" />
           Your browser doesn't support HTML5 video.
-        </video> -->
+        </video>
       </div>
     </div>
     <v-container class="scrolly-text py-0">
@@ -118,7 +118,7 @@ export default {
 }
 .scrolly-sticky .video-wrapper {
   position: relative;
-  background-image: url("@/assets/img/HuiBao.png");
+  background-image: "#eFF";
   height: calc(100vh - 64px);
   background-size: cover;
 }
