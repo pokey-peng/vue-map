@@ -4,7 +4,7 @@
       <div class="video-wrapper">
         <video
           preload="none"
-          poster="@/assets/img/mapscroll.png"
+          poster="@/assets/img/pre2.png"
           ref="mapVideo"
           autoplay
           loop

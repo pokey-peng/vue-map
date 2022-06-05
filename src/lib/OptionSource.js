@@ -183,8 +183,22 @@ function generateSeries(yName) {
   series["name"] = yName.slice(0, 3);
   return series;
 }
+
+let warShow = {
+  伊拉克: false,
+  叙利亚: false,
+  阿富汗: false,
+  利比亚: false,
+  土耳其: false,
+};
 function getWarOption(name, coord = []) {
   console.log("点击名字:", name);
+  warShow[name] = !warShow[name];
+  if (!warShow[name]) {
+    return {
+      series: [],
+    };
+  }
   let warData = generateWarData(name);
   let dataset = getNotaAttrData();
   let data = (function () {
@@ -230,9 +244,11 @@ function getWarOption(name, coord = []) {
         itemStyle: {
           color: "orange",
         },
+        animationDurationUpdate: 1000,
       },
       {
         type: "lines3D",
+        name: "兵力线",
         coordinateSystem: "globe",
         blendMode: "lighter",
         lineStyle: {
@@ -241,6 +257,7 @@ function getWarOption(name, coord = []) {
           opacity: 1,
         },
         data: newData,
+        animationDurationUpdate: 1000,
       },
     ],
   };
@@ -313,7 +330,7 @@ function getGlobeOption(name, mapEcharts = null) {
             geoIndex: 0,
             data: [mapEcharts],
             //rippleEffect: { color: "red" },
-            symbolSize: 15,
+            symbolSize: 25,
             emphasis: {
               focus: "self",
               label: {
@@ -351,8 +368,7 @@ function getGlobeOption(name, mapEcharts = null) {
           },
           viewControl: {
             autoRotate: false,
-            beta: 120,
-            alpha: 40,
+            targetCoord: [38.277783, 35.006636],
           },
           //layers: [{ type: "overlay", name: "POP", texture: mapChart }],
         },

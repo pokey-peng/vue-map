@@ -39,21 +39,34 @@ export default {
     step(newVal) {
       console.log(newVal);
       let option = { series: { name: "curWar", data: [this.warCoord[0]] } };
+      let viewOption = {
+        globe: {
+          viewControl: {
+            targetCoord: this.warCoordSys(0),
+          },
+        },
+      };
       if (newVal == "3-6") {
         option.series.data[0] = this.warCoord[1];
+        viewOption.globe.viewControl.targetCoord = this.warCoordSys(1);
       } else if (newVal == "3-5") {
         option.series.data[0] = this.warCoord[0];
+        viewOption.globe.viewControl.targetCoord = this.warCoordSys(0);
       } else if (newVal == "3-7") {
         option.series.data[0] = this.warCoord[2];
+        viewOption.globe.viewControl.targetCoord = this.warCoordSys(2);
       } else if (newVal == "3-8") {
         option.series.data[0] = this.warCoord[3];
+        viewOption.globe.viewControl.targetCoord = this.warCoordSys(3);
       } else if (newVal == "3-9") {
         option.series.data[0] = this.warCoord[4];
+        viewOption.globe.viewControl.targetCoord = this.warCoordSys(4);
       } else if (newVal == "3-10") {
         option.series.data = this.warCoord;
       }
-
+      console.log("移动坐标", viewOption);
       mapChart.setOption(option);
+      myChart.setOption(viewOption);
     },
   },
   methods: {
@@ -86,8 +99,11 @@ export default {
           params.data[1],
         ]);
         console.log("地球组件配置: ", seriesOption);
-        myChart.setOption(seriesOption);
+        myChart.setOption(seriesOption, { replaceMerge: ["series"] });
       });
+    },
+    warCoordSys(index) {
+      return [this.warCoord[index][0], this.warCoord[index][1]];
     },
   },
 };

@@ -114,7 +114,7 @@ const state = {
     },
     "2-5": {
       camera: {
-        center: { lon: 32.99805, lat: 51.98501 },
+        center: { lon: 10.99805, lat: 48.98501 },
         zoom: 4.41,
         pitch: 0.0,
         bearing: -7.37,
