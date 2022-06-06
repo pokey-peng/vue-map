@@ -29,7 +29,20 @@ export default {
     initChart() {
       let option = {
         dataset: {},
-        grid: { bottom: "40%" },
+        timeline: {
+          bottom: "10%",
+          playInterval: 1000, // 播放速度
+          data: ["1950", "1960", "1970", "1980", "1990", "2000"],
+        },
+        title: {
+          text: "北约各国军费军力变化",
+          subtext: "1950年数据",
+          top: "2%",
+          textAlign: "center",
+          right: "40%",
+          textVerticalAlign: "middle",
+        },
+        grid: { top: "16%", bottom: "30%" },
         xAxis: [
           {
             type: "category",
@@ -51,14 +64,17 @@ export default {
           max: 5,
           axisLine: { show: false },
         },
+        tooltip: {},
+        // 基本配置去掉dimension,由options数组设置每一时期映射的维度
         visualMap: [
           {
+            id: "GDP_V",
             show: true,
             left: "right",
             bottom: "5%",
-            dimension: 7, // 指向第三列（列序号从 0 开始记，所以设置为 2）。
-            min: 5500, // 需要给出数值范围，最小数值。
-            max: 22000000, // 需要给出数值范围，最大数值。
+            //dimension: 7, // 指向第三列（列序号从 0 开始记，所以设置为 2）。
+            min: 0, // 需要给出数值范围，最小数值。
+            max: 300, // 需要给出数值范围，最大数值。
             seriesIndex: 0,
             itemWidth: 30,
             itemHeight: 120,
@@ -68,18 +84,19 @@ export default {
             textGap: 30,
             inRange: {
               symbolSize: [10, 100],
-              color: ["#1a237e", "#33691e", "#b71c1c"],
+              // color: ["#1a237e", "#33691e", "#b71c1c"],
             },
           },
           {
+            id: "POP_V",
             show: false,
-            dimension: 30,
-            min: 1,
-            max: 350000000,
+            // dimension: 30,
+            min: 0,
+            max: 300,
             seriesIndex: 1,
             inRange: {
               symbolSize: [10, 100],
-              color: ["#1a237e", "#33691e", "#b71c1c"],
+              // color: ["#1a237e", "#33691e", "#b71c1c"],
             },
           },
         ],
@@ -102,7 +119,7 @@ export default {
               focus: "series",
             },
             labelLayout: {
-              y: "30%",
+              y: "40%",
               //moveOverlap: "shiftX",
               draggable: true,
             },
@@ -158,7 +175,7 @@ export default {
               },
             },
             labelLayout: {
-              y: "30%",
+              y: "40%",
               moveOverlap: "shiftX",
               draggable: true,
             },
@@ -175,17 +192,99 @@ export default {
             },
           },
         ],
+        // 设置每一时期映射的维度
+        options: [
+          {
+            title: { subtext: "1950年数据" },
+            visualMap: [
+              { id: "GDP_V", dimension: "1950" },
+              { id: "POP_V", dimension: "1960" },
+            ],
+            series: [
+              { name: "NOTA_Pao", encode: { tooltip: ["NAME_ZH", "1950"] } },
+              { name: "NOTA_POP", encode: { tooltip: ["NAME_ZH", "1960"] } },
+            ],
+          },
+          {
+            title: { subtext: "1960年数据" },
+            visualMap: [
+              { id: "GDP_V", dimension: "1960" },
+              { id: "POP_V", dimension: "1970" },
+            ],
+            series: [
+              { name: "NOTA_Pao", encode: { tooltip: ["NAME_ZH", "1960"] } },
+              { name: "NOTA_POP", encode: { tooltip: ["NAME_ZH", "1970"] } },
+            ],
+          },
+          {
+            title: { subtext: "1970年数据" },
+            visualMap: [
+              { id: "GDP_V", dimension: "1970" },
+              { id: "POP_V", dimension: "1980" },
+            ],
+            series: [
+              { name: "NOTA_Pao", encode: { tooltip: ["NAME_ZH", "1970"] } },
+              { name: "NOTA_POP", encode: { tooltip: ["NAME_ZH", "1980"] } },
+            ],
+          },
+          {
+            title: { subtext: "1980年数据" },
+            visualMap: [
+              { id: "GDP_V", dimension: "1980" },
+              { id: "POP_V", dimension: "1990" },
+            ],
+            series: [
+              { name: "NOTA_Pao", encode: { tooltip: ["NAME_ZH", "1980"] } },
+              { name: "NOTA_POP", encode: { tooltip: ["NAME_ZH", "1990"] } },
+            ],
+          },
+          {
+            title: { subtext: "1990年数据" },
+            visualMap: [
+              { id: "GDP_V", dimension: "1990" },
+              { id: "POP_V", dimension: "2000" },
+            ],
+            series: [
+              { name: "NOTA_Pao", encode: { tooltip: ["NAME_ZH", "1990"] } },
+              { name: "NOTA_POP", encode: { tooltip: ["NAME_ZH", "2000"] } },
+            ],
+          },
+          {
+            title: { subtext: "2000年数据" },
+            visualMap: [
+              { id: "GDP_V", dimension: "2000" },
+              { id: "POP_V", dimension: "1950" },
+            ],
+            series: [
+              { name: "NOTA_Pao", encode: { tooltip: ["NAME_ZH", "2000"] } },
+              { name: "NOTA_POP", encode: { tooltip: ["NAME_ZH", "1950"] } },
+            ],
+          },
+        ],
       };
       option.dataset = getNotaDataSet();
       console.log("真正源数据", option.dataset);
       option.dataset.dimensions.push("yCoord");
       option.dataset.dimensions.push("yCoord2");
-      option.dataset.source.forEach((item) => {
+      option.dataset.dimensions.push("1950");
+      option.dataset.dimensions.push("1960");
+      option.dataset.dimensions.push("1970");
+      option.dataset.dimensions.push("1980");
+      option.dataset.dimensions.push("1990");
+      option.dataset.dimensions.push("2000");
+      option.dataset.source.forEach((item, index) => {
+        let index2 = index + 1;
         item.push(0.8);
         item.push(4.6);
+        item.push(Math.random() * (index2 * 10 - index * 10 + 1) + index * 10);
+        item.push(Math.random() * (index2 * 10 - index * 10 + 1) + index * 10);
+        item.push(Math.random() * (index2 * 10 - index * 10 + 1) + index * 10);
+        item.push(Math.random() * (index2 * 10 - index * 10 + 1) + index * 10);
+        item.push(Math.random() * (index2 * 10 - index * 10 + 1) + index * 10);
+        item.push(Math.random() * (index2 * 10 - index * 10 + 1) + index * 10);
       });
       console.log("气泡图配置项：", option);
-      console.log("分割线");
+      console.log("分割线****************************");
       chartMy =
         chartMy ?? this.$echarts.init(document.getElementById("echart-d3"));
 

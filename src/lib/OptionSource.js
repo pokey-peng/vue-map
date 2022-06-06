@@ -191,10 +191,10 @@ let warShow = {
   利比亚: false,
   土耳其: false,
 };
-function getWarOption(name, coord = []) {
+function getWarOption(name, coord = [], click = false) {
   console.log("点击名字:", name);
   warShow[name] = !warShow[name];
-  if (!warShow[name]) {
+  if (!warShow[name] && click) {
     return {
       series: [],
     };
@@ -251,6 +251,7 @@ function getWarOption(name, coord = []) {
         name: "兵力线",
         coordinateSystem: "globe",
         blendMode: "lighter",
+        effect: { show: true },
         lineStyle: {
           width: 2,
           color: "#e0747f",

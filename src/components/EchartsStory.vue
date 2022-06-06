@@ -169,9 +169,9 @@ export default {
     renderEchart() {
       switch (this.step) {
         case "3-0":
-          return "EchartsBar";
+          return "D3Chart";
         case "3-1":
-          return "EchartsBar";
+          return "D3Chart";
         case "3-2":
           return "D3Chart";
         case "3-3":
@@ -197,7 +197,7 @@ export default {
         case "3-13":
           return "EchartsGeo";
         default:
-          return "EchartsBar";
+          return "D3Chart";
       }
     },
   },

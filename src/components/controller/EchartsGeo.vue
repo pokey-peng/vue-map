@@ -16,6 +16,7 @@ import { getWarOption, getGlobeOption } from "../../lib/OptionSource";
 
 let myChart = null;
 let mapChart = null;
+let barSeries = {};
 export default {
   name: "EchartsGeo",
   data: () => {
@@ -46,27 +47,38 @@ export default {
           },
         },
       };
+
       if (newVal == "3-6") {
         option.series.data[0] = this.warCoord[1];
         viewOption.globe.viewControl.targetCoord = this.warCoordSys(1);
+        barSeries = getWarOption(this.warCoord[1][2].name, this.warCoordSys(1));
       } else if (newVal == "3-5") {
         option.series.data[0] = this.warCoord[0];
         viewOption.globe.viewControl.targetCoord = this.warCoordSys(0);
+        barSeries = getWarOption(this.warCoord[0][2].name, this.warCoordSys(0));
       } else if (newVal == "3-7") {
         option.series.data[0] = this.warCoord[2];
         viewOption.globe.viewControl.targetCoord = this.warCoordSys(2);
+        barSeries = getWarOption(this.warCoord[2][2].name, this.warCoordSys(2));
       } else if (newVal == "3-8") {
         option.series.data[0] = this.warCoord[3];
         viewOption.globe.viewControl.targetCoord = this.warCoordSys(3);
+        barSeries = getWarOption(this.warCoord[3][2].name, this.warCoordSys(3));
       } else if (newVal == "3-9") {
         option.series.data[0] = this.warCoord[4];
         viewOption.globe.viewControl.targetCoord = this.warCoordSys(4);
+        barSeries = getWarOption(this.warCoord[4][2].name, this.warCoordSys(4));
       } else if (newVal == "3-10") {
         option.series.data = this.warCoord;
+        barSeries = {};
       }
-      console.log("移动坐标", viewOption);
+      console.log("移动兵力显示: ", barSeries);
       mapChart.setOption(option);
+      myChart.setOption({ series: [] }, { replaceMerge: ["series"] });
       myChart.setOption(viewOption);
+      setTimeout(() => {
+        myChart.setOption(barSeries, { replaceMerge: ["series"] });
+      }, 1700);
     },
   },
   methods: {
@@ -94,13 +106,17 @@ export default {
       myChart.setOption(getGlobeOption("globe", mapChart));
       //console.log(getGlobeOption("globe", mapChart));
       mapChart.on("click", function (params) {
-        let seriesOption = getWarOption(params.data[2].name, [
-          params.data[0],
-          params.data[1],
-        ]);
+        let seriesOption = getWarOption(
+          params.data[2].name,
+          [params.data[0], params.data[1]],
+          true
+        );
         console.log("地球组件配置: ", seriesOption);
         myChart.setOption(seriesOption, { replaceMerge: ["series"] });
       });
+      // mapChart.on("finished", function () {
+      //   myChart.setOption(barSeries, { replaceMerge: ["series"] });
+      // });
     },
     warCoordSys(index) {
       return [this.warCoord[index][0], this.warCoord[index][1]];
