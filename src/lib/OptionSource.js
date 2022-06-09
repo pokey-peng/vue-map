@@ -370,7 +370,7 @@ function getGlobeOption(name, mapEcharts = null) {
           viewControl: {
             autoRotate: false,
             distance: 300,
-            targetCoord: [-31.309033689627796, 40.59132814151329],
+            targetCoord: [-31.309033689627796, 50.59132814151329],
           },
           //layers: [{ type: "overlay", name: "POP", texture: mapChart }],
         },

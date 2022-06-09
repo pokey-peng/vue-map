@@ -83,6 +83,22 @@ export default {
     },
     initLayer() {
       map.on("load", () => {
+        map.loadImage(
+          process.env.BASE_URL + "icon/NOTA/NOTA_flag.png",
+          (err, image) => {
+            if (err) throw err;
+            map.addImage("NOTA", image, { pixelRatio: 40 });
+
+            map.addLayer({
+              id: "pattern-layer",
+              type: "fill",
+              source: "finall Europe",
+              paint: {
+                "fill-pattern": "pattern",
+              },
+            });
+          }
+        );
         map.addSource("point2", {
           type: "geojson",
           data: point2,
@@ -92,7 +108,7 @@ export default {
           source: "point2",
           type: "symbol",
           layout: {
-            "icon-image": "airfield",
+            "icon-image": "NOTA",
             "icon-rotate": ["get", "bearing"],
             "icon-rotation-alignment": "map",
             "icon-allow-overlap": true,
