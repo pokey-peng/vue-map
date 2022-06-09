@@ -71,8 +71,9 @@
           <v-container>
             <h2 class="h5 mb-lg-3">创始成员国</h2>
             <p class="body-2">
-              我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
-              无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
+              ·1949年4月4日，美国、加拿大、比利时、法国、卢森堡、荷兰、英国、丹麦、挪威、冰岛、葡萄牙和意大利在华盛顿签署了北大西洋公约，决定成立北大西洋公约组织。
+              ·同年8月24日各国完成批准手续，该组织正式成立以针对苏联为首的东欧集团国成员。
+              ·苏联解体以致华沙条约组织宣告解散后，北约成为一个地区性防卫协作组织。
             </p>
           </v-container>
         </div>
@@ -80,10 +81,9 @@
       <v-row class="wrap justify-center align-start step">
         <div data-step="2-3" class="text-block">
           <v-container>
-            <h2 class="h5 mb-lg-3">第一次和第二次东扩</h2>
+            <h2 class="h5 mb-lg-3">冷战期间</h2>
             <p class="body-2">
-              我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
-              无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
+              1952年-土耳其、希腊加入 1955年-西德加入 1982年-西班牙加入
             </p>
           </v-container>
         </div>
@@ -91,21 +91,17 @@
       <v-row class="wrap justify-center align-start step">
         <div data-step="2-4" class="text-block">
           <v-container>
-            <h2 class="h5 mb-lg-3">第三次东扩</h2>
-            <p class="body-2">
-              我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
-              无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
-            </p>
+            <h2 class="h5 mb-lg-3">冷战结束</h2>
+            <p class="body-2">1989年-东德西德合并，东德自动加入北约</p>
           </v-container>
         </div>
       </v-row>
       <v-row class="wrap justify-center align-start step">
         <div data-step="2-5" class="text-block">
           <v-container>
-            <h2 class="h5 mb-lg-3">第四次东扩</h2>
+            <h2 class="h5 mb-lg-3">第一次东扩</h2>
             <p class="body-2">
-              我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
-              无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
+              1999年-科索沃战争中，波兰、捷克、匈牙利加入北约
             </p>
           </v-container>
         </div>
@@ -118,10 +114,9 @@
       <v-row class="wrap justify-center align-start step">
         <div data-step="2-6" class="text-block">
           <v-container>
-            <h2 class="h5 mb-lg-3">第五次东扩</h2>
+            <h2 class="h5 mb-lg-3">第二次东扩</h2>
             <p class="body-2">
-              我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
-              无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
+              2004年-北约开始了大规模东扩计划，立陶宛、爱沙尼亚、拉脱维亚、斯洛伐克、斯洛文尼亚、罗马尼亚、保加利亚等7国集体加入北约，自此北约共有26个成员国。
             </p>
           </v-container>
         </div>
@@ -129,10 +124,10 @@
       <v-row class="wrap justify-center align-start step">
         <div data-step="2-7" class="text-block">
           <v-container>
-            <h2 class="h5 mb-lg-3">最后三次</h2>
+            <h2 class="h5 mb-lg-3">第三、四、五次东扩</h2>
             <p class="body-2">
-              我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
-              无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
+              2009年-阿尔巴尼亚、克罗地亚加入北约 2017年-黑山加入北约
+              2020年-北马其顿成为北约第30个成员国
             </p>
           </v-container>
         </div>
@@ -156,11 +151,12 @@ import MapFirst from "./controller/MapFirst.vue";
 import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/default.css";
 import { mapGetters } from "vuex";
+import { EventBus } from "@/lib/bus";
 export default {
   name: "MapStoryFirst",
   data: () => {
     return {
-      value: "1949",
+      value: "",
       data: [
         "1949",
         "1952",
@@ -181,6 +177,7 @@ export default {
   computed: {
     ...mapGetters("mapView", ["currentPage", "step"]),
     switchYear() {
+      EventBus.$emit("hideSymbol");
       return this.switchLabel.map((item) => {
         return Number(item);
       });
@@ -197,6 +194,7 @@ export default {
     if (this.timeId) {
       clearTimeout(this.timeId);
     }
+    EventBus.$off();
   },
   methods: {
     initScrollama() {
@@ -235,7 +233,8 @@ export default {
     pause() {
       this.isPlay = !this.isPlay;
       if (this.isPlay) {
-        this.timeId = setTimeout(this.expansionAnimate, 1000);
+        this.timeId = setTimeout(this.expansionAnimate, 2000);
+        EventBus.$emit("showSymbol");
       } else {
         clearTimeout(this.timeId);
       }
@@ -247,7 +246,7 @@ export default {
       this.$refs.slide.setValue(this.data[index]);
       //this.filterBy(this.data[index], "single");
       this.$store.dispatch("mapView/updateYear", this.data[index]);
-      this.timeId = setTimeout(this.expansionAnimate, 1000);
+      this.timeId = setTimeout(this.expansionAnimate, 2000);
     },
     changeYear() {
       let index = this.$refs.slide.getIndex();

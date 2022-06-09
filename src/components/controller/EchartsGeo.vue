@@ -38,6 +38,9 @@ export default {
   },
   watch: {
     step(newVal) {
+      if (!mapChart && !myChart) {
+        return;
+      }
       console.log(newVal);
       let option = { series: { name: "curWar", data: [this.warCoord[0]] } };
       let viewOption = {

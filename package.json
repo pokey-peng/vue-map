@@ -9,6 +9,7 @@
     "start": "npm run serve"
   },
   "dependencies": {
+    "@turf/turf": "^6.5.0",
     "axios": "^0.27.2",
     "core-js": "^3.8.3",
     "d3": "^7.4.4",
