@@ -133,15 +133,7 @@
         </div>
       </v-row>
       <v-row class="wrap justify-center align-start step">
-        <div data-step="2-8" class="text-block">
-          <!-- <v-container>
-            <h2 class="h5 mb-lg-3">移动</h2>
-            <p class="body-2">
-              我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
-              无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
-            </p>
-          </v-container> -->
-        </div>
+        <div data-step="2-8" class="text-block"></div>
       </v-row>
     </v-container>
   </section>
@@ -255,7 +247,23 @@ export default {
     switchStyle(time) {
       switch (time) {
         case "1949":
-          return "background-color: rgba(22,44,77,0.8)";
+          return "background-color: #008c99";
+        case "1952":
+          return "background-color: #0087b8";
+        case "1955":
+          return "background-color: #1652a2";
+        case "1982":
+          return "background-color: #0087b8";
+        case "1999":
+          return "background-color: #6941aa";
+        case "2004":
+          return "background-color: #c15c83";
+        case "2009":
+          return "background-color: #d74242";
+        case "2017":
+          return "background-color: #d74242";
+        case "2020":
+          return "background-color: #d74242";
         default:
           return "background-color: rgba(221,76,90,0.8)";
       }

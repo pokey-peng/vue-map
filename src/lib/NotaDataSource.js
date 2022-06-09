@@ -61,22 +61,6 @@ function getNotaAttrData() {
   countryList.sort((a, b) => {
     return a[7] - b[7];
   });
-  console.log(
-    "GDP最小值(十万美元): ",
-    countryList[0][7],
-    "  GDP最大值: ",
-    countryList[countryList.length - 1][7]
-  );
-  console.log(
-    "人口最小值: ",
-    countryList.reduce((pre, cur) => {
-      return pre[30] < cur[30] ? pre : cur;
-    })[30],
-    "人口最大值: ",
-    countryList.reduce((pre, cur) => {
-      return pre[30] > cur[30] ? pre : cur;
-    })[30]
-  );
   data.push(countryList);
   console.log("源数据: ", data);
   return data;
@@ -740,15 +724,16 @@ function getNotaDataSet(finished = false) {
   return dataset;
 }
 function generateWarData(name) {
-  name = name == "海湾" ? "伊拉克" : name;
+  //name = name == "海湾" ? "伊拉克" : name;
   let resultData = {};
+  console.log("warData:", warData);
   warData.forEach((key) => {
     if (key["名称"] !== name) {
       return;
     }
     resultData = key["北约参战兵力"][0];
   });
-  console.log("参战兵力", resultData);
+  console.log("参战兵力从war", resultData);
   return resultData;
 }
 async function getWarCountryData() {
@@ -756,7 +741,7 @@ async function getWarCountryData() {
     process.env.BASE_URL + "GeoData/warCountry.geojson"
   );
   console.log(response.data);
-  let nameCountry = ["科索沃", "阿富汗", "叙利亚", "伊拉克", "利比亚"];
+  let nameCountry = ["海湾", "科索沃", "阿富汗", "伊拉克", "利比亚", "叙利亚"];
   let data = [];
   for (let feature of response.data.features) {
     let name = feature.properties["NAME_ZH"];
@@ -770,6 +755,7 @@ async function getWarCountryData() {
       attr,
     ]);
   }
+  data.push([data[3][0], data[3][1], { name: "海湾" }]);
   //console.log("战争国家: ", data);
   return data;
 }

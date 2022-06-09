@@ -42,46 +42,61 @@ export default {
         return;
       }
       console.log(newVal);
-      let option = { series: { name: "curWar", data: [this.warCoord[0]] } };
+      let option = {
+        series: { name: "curWar", show: true, data: [this.warCoord[0]] },
+      };
       let viewOption = {
         globe: {
           viewControl: {
+            distance: 150,
             targetCoord: this.warCoordSys(0),
           },
         },
       };
-
+      barSeries = {};
       if (newVal == "3-6") {
-        option.series.data[0] = this.warCoord[1];
-        viewOption.globe.viewControl.targetCoord = this.warCoordSys(1);
-        barSeries = getWarOption(this.warCoord[1][2].name, this.warCoordSys(1));
-      } else if (newVal == "3-5") {
-        option.series.data[0] = this.warCoord[0];
-        viewOption.globe.viewControl.targetCoord = this.warCoordSys(0);
-        barSeries = getWarOption(this.warCoord[0][2].name, this.warCoordSys(0));
-      } else if (newVal == "3-7") {
         option.series.data[0] = this.warCoord[2];
         viewOption.globe.viewControl.targetCoord = this.warCoordSys(2);
-        barSeries = getWarOption(this.warCoord[2][2].name, this.warCoordSys(2));
+        barSeries = getWarOption(this.warCoord[1][2].name, this.warCoordSys(2));
+      } else if (newVal == "3-5") {
+        option.series.data[0] = this.warCoord[5];
+        viewOption.globe.viewControl.targetCoord = this.warCoordSys(5);
+        barSeries = getWarOption(this.warCoord[5][2].name, this.warCoordSys(5));
+      } else if (newVal == "3-7") {
+        option.series.data[0] = this.warCoord[4];
+        viewOption.globe.viewControl.targetCoord = this.warCoordSys(4);
+        barSeries = getWarOption(this.warCoord[2][2].name, this.warCoordSys(4));
       } else if (newVal == "3-8") {
         option.series.data[0] = this.warCoord[3];
         viewOption.globe.viewControl.targetCoord = this.warCoordSys(3);
         barSeries = getWarOption(this.warCoord[3][2].name, this.warCoordSys(3));
       } else if (newVal == "3-9") {
-        option.series.data[0] = this.warCoord[4];
-        viewOption.globe.viewControl.targetCoord = this.warCoordSys(4);
-        barSeries = getWarOption(this.warCoord[4][2].name, this.warCoordSys(4));
+        option.series.data[0] = this.warCoord[1];
+        viewOption.globe.viewControl.targetCoord = this.warCoordSys(1);
+        barSeries = getWarOption(this.warCoord[4][2].name, this.warCoordSys(1));
       } else if (newVal == "3-10") {
+        option.series.data[0] = this.warCoord[0];
+        viewOption.globe.viewControl.targetCoord = this.warCoordSys(0);
+        barSeries = getWarOption(this.warCoord[4][2].name, this.warCoordSys(0));
+      } else if (newVal == "3-11") {
         option.series.data = this.warCoord;
         barSeries = {};
+      } else if (newVal == "3-4") {
+        viewOption.globe.viewControl.targetCoord = [
+          -31.309033689627796, 40.59132814151329,
+        ];
+        viewOption.globe.viewControl.distance = 300;
+        option.series["show"] = false;
+        option.series.data = [];
       }
+      console.log("战争地点列表", this.warCoord);
       console.log("移动兵力显示: ", barSeries);
       mapChart.setOption(option);
       myChart.setOption({ series: [] }, { replaceMerge: ["series"] });
       myChart.setOption(viewOption);
       setTimeout(() => {
         myChart.setOption(barSeries, { replaceMerge: ["series"] });
-      }, 1700);
+      }, 1500);
     },
   },
   methods: {
@@ -99,9 +114,8 @@ export default {
         });
 
       this.warCoord = await getWarCountryData();
-      console.log(this.warCoord);
 
-      mapChart.setOption(getGlobeOption("map", this.warCoord[0]));
+      mapChart.setOption(getGlobeOption("map", []));
 
       myChart =
         myChart ?? this.$echarts.init(document.getElementById("echart-geo"));
@@ -117,9 +131,6 @@ export default {
         console.log("地球组件配置: ", seriesOption);
         myChart.setOption(seriesOption, { replaceMerge: ["series"] });
       });
-      // mapChart.on("finished", function () {
-      //   myChart.setOption(barSeries, { replaceMerge: ["series"] });
-      // });
     },
     warCoordSys(index) {
       return [this.warCoord[index][0], this.warCoord[index][1]];

@@ -185,6 +185,7 @@ function generateSeries(yName) {
 }
 
 let warShow = {
+  海湾: false,
   伊拉克: false,
   叙利亚: false,
   阿富汗: false,
@@ -192,7 +193,6 @@ let warShow = {
   土耳其: false,
 };
 function getWarOption(name, coord = [], click = false) {
-  console.log("点击名字:", name);
   warShow[name] = !warShow[name];
   if (!warShow[name] && click) {
     return {
@@ -228,7 +228,7 @@ function getWarOption(name, coord = [], click = false) {
     });
     return result;
   })();
-  console.log("参战兵力: ", data);
+  console.log("参战兵力option: ", data);
   let option = {
     series: [
       {
@@ -369,7 +369,8 @@ function getGlobeOption(name, mapEcharts = null) {
           },
           viewControl: {
             autoRotate: false,
-            targetCoord: [38.277783, 35.006636],
+            distance: 300,
+            targetCoord: [-31.309033689627796, 40.59132814151329],
           },
           //layers: [{ type: "overlay", name: "POP", texture: mapChart }],
         },
