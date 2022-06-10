@@ -175,7 +175,7 @@ export default {
         case "3-2":
           return "D3Chart";
         case "3-3":
-          return "D3Chart";
+          return "EchartsGeo";
         case "3-4":
           return "EchartsGeo";
         case "3-5":

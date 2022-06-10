@@ -7,15 +7,16 @@ import { mapGetters } from "vuex";
 import { setLayerOpacity } from "../../lib/SetLayer";
 import { EventBus } from "@/lib/bus";
 import * as turf from "@turf/turf";
-import { point as point2, generateDisArrary } from "@/lib/AnimateBorder";
+import { getPoint2, generateDisArrary } from "@/lib/AnimateBorder";
 let map;
 let disArray, pArray;
 [disArray, pArray] = generateDisArrary();
 console.log("弧线数组: ", disArray);
 let counter = 0;
 let curArcArray;
+const point2 = getPoint2();
 let origin = point2.features[0].geometry.coordinates;
-const steps = 100;
+const steps = 50;
 export default {
   name: "MapFirst",
   props: { yearLabel: Array },
@@ -56,9 +57,9 @@ export default {
       let expression =
         newVal.length !== 0 ? ["match", ["get", "JoinTime"], newVal, 1, 0] : 0;
       let options = {};
-      if (![1982, 2009, 2017, 2020].includes(newVal)) {
-        EventBus.$emit("ChangeBorder", newVal);
-      }
+      // if (![1982, 2009, 2017, 2020].includes(newVal)) {
+      //   EventBus.$emit("ChangeBorder", newVal);
+      // }
       //console.log(expression);
       map.setPaintProperty("final Europe", "fill-opacity", expression, options);
     },
@@ -83,22 +84,15 @@ export default {
     },
     initLayer() {
       map.on("load", () => {
+        console.log("图层", map.getLayer("final Europe"));
         map.loadImage(
-          process.env.BASE_URL + "icon/NOTA/NOTA_flag.png",
+          process.env.BASE_URL + "icon/NOTA/NOTA.png",
           (err, image) => {
             if (err) throw err;
-            map.addImage("NOTA", image, { pixelRatio: 40 });
-
-            map.addLayer({
-              id: "pattern-layer",
-              type: "fill",
-              source: "finall Europe",
-              paint: {
-                "fill-pattern": "pattern",
-              },
-            });
+            map.addImage("NOTA_icon", image, { pixelRatio: 20 });
           }
         );
+        //map.setPaintProperty("final Europe", "fill-pattern", null, {});
         map.addSource("point2", {
           type: "geojson",
           data: point2,
@@ -108,47 +102,48 @@ export default {
           source: "point2",
           type: "symbol",
           layout: {
-            "icon-image": "NOTA",
+            "icon-image": "airfield",
             "icon-rotate": ["get", "bearing"],
             "icon-rotation-alignment": "map",
             "icon-allow-overlap": true,
             "icon-ignore-placement": true,
           },
         });
-        map.setPaintProperty("final Europe", "fill-opacity", 0, {});
+        //map.setPaintProperty("final Europe", "fill-opacity", 0, {});
         map.setPaintProperty("point2", "icon-opacity", 0, {});
         EventBus.$on("ChangeBorder", (curYear) => {
           if (curYear === "1949") {
             console.log("检测到变化:", curYear);
             point2.features[0].geometry.coordinates = origin;
             map.getSource("point2").setData(point2);
+            console.log("检测到变化:", map.getSource("point2"));
           }
           if (curYear === "1952") {
             curArcArray = disArray["1949-1952"];
             counter = 0;
-            console.log("检测到变化:", curYear);
+            console.log("检测到变化:", curArcArray);
             this.animate(counter);
           } else if (curYear === "1955") {
             curArcArray = disArray["1952-1955"];
-            point2.features[0].geometry.coordinates = pArray["1949-1952"];
-            map.getSource("point2").setData(point2);
+            // point2.features[0].geometry.coordinates = pArray["1949-1952"];
+            // map.getSource("point2").setData(point2);
             counter = 0;
             console.log("检测到变化:", curYear);
             this.animate(counter);
           } else if (curYear === "1999") {
             curArcArray = disArray["1955-1999"];
-            point2.features[0].geometry.coordinates = pArray["1952-1955"];
-            map.getSource("point2").setData(point2);
+            // point2.features[0].geometry.coordinates = pArray["1952-1955"];
+            // map.getSource("point2").setData(point2);
             counter = 0;
             console.log("检测到变化:", curYear);
             this.animate(counter);
           } else if (curYear === "2004") {
             curArcArray = disArray["1999-2004"];
-            point2.features[0].geometry.coordinates = pArray["1955-1999"];
-            map.getSource("point2").setData(point2);
+            // point2.features[0].geometry.coordinates = pArray["1955-1999"];
+            // map.getSource("point2").setData(point2);
             counter = 0;
             console.log("检测到变化:", curYear);
-            this.animate(counter);
+            this.animate();
           }
         });
         EventBus.$on("showSymbol", () => {
@@ -157,16 +152,20 @@ export default {
         EventBus.$on("hideSymbol", () => {
           map.setPaintProperty("point2", "icon-opacity", 0, {});
         });
+        EventBus.$on("setFillImage", () => {
+          map.setPaintProperty("final Europe", "fill-pattern", "NOTA_icon", {});
+        });
       });
 
       map.on("click", (e) => {
         console.log(e.lngLat);
       });
     },
-    animate(counter) {
+    animate() {
       let coords = curArcArray.map((item) => {
         return item[counter >= steps ? counter : counter + 1];
       });
+      //console.log("counter", counter);
 
       if (coords.includes(undefined) || coords.includes(null)) return;
 
@@ -175,7 +174,6 @@ export default {
       if (counter < steps) {
         requestAnimationFrame(this.animate);
       }
-
       counter = counter + 1;
     },
     setLayer(stepSetting) {

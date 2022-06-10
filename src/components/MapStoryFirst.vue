@@ -227,6 +227,7 @@ export default {
       if (this.isPlay) {
         this.timeId = setTimeout(this.expansionAnimate, 2000);
         EventBus.$emit("showSymbol");
+        EventBus.$emit("setFillImage");
       } else {
         clearTimeout(this.timeId);
       }
