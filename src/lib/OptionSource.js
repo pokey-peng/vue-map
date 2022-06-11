@@ -280,6 +280,7 @@ function getGlobeOption(name, mapEcharts = null) {
     "https://fastly.jsdelivr.net/gh/apache/echarts-website@asf-site/examples";
   return name !== "globe"
     ? {
+        backgroundColor: "#4d78cc",
         // dataset: getNotaDataSet(),
         tooltip: {
           show: true,
@@ -300,7 +301,7 @@ function getGlobeOption(name, mapEcharts = null) {
           bottom: 0,
           //center: [0, 40],
           nameProperty: "NAME_ZH",
-          label: { show: true },
+          label: { show: true, fontFamily: "Microsoft YaHei" },
           silent: true,
           boundingCoords: [
             [-180, 90],
