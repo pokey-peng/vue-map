@@ -155,6 +155,9 @@ export default {
         EventBus.$on("setFillImage", () => {
           map.setPaintProperty("final Europe", "fill-pattern", "NOTA_icon", {});
         });
+        EventBus.$on("hideFillImage", () => {
+          map.setPaintProperty("final Europe", "fill-pattern", null, {});
+        });
       });
 
       map.on("click", (e) => {

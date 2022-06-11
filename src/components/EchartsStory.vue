@@ -51,99 +51,12 @@
             </div>
           </v-row>
           <v-row class="wrap justify-center align-start step">
-            <div data-step="3-5" class="text-block">
-              <v-container>
-                <h2 class="h5 mb-lg-3">北约源起</h2>
-                <p class="body-2">
-                  我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
-                  无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
-                </p>
-              </v-container>
-            </div>
-          </v-row>
-          <v-row class="wrap justify-center align-start step">
-            <div data-step="3-6" class="text-block">
-              <v-container>
-                <h2 class="h5 mb-lg-3">北约源起</h2>
-                <p class="body-2">
-                  我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
-                  无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
-                </p>
-              </v-container>
-            </div>
-          </v-row>
-          <v-row class="wrap justify-center align-start step">
-            <div data-step="3-7" class="text-block">
-              <v-container>
-                <h2 class="h5 mb-lg-3">北约源起</h2>
-                <p class="body-2">
-                  我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
-                  无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
-                </p>
-              </v-container>
-            </div>
-          </v-row>
-          <v-row class="wrap justify-center align-start step">
-            <div data-step="3-8" class="text-block">
-              <v-container>
-                <h2 class="h5 mb-lg-3">北约源起</h2>
-                <p class="body-2">
-                  我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
-                  无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
-                </p>
-              </v-container>
-            </div>
-          </v-row>
-          <v-row class="wrap justify-center align-start step">
-            <div data-step="3-9" class="text-block">
-              <v-container>
-                <h2 class="h5 mb-lg-3">北约源起</h2>
-                <p class="body-2">
-                  我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
-                  无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
-                </p>
-              </v-container>
-            </div>
-          </v-row>
-          <v-row class="wrap justify-center align-start step">
-            <div data-step="3-10" class="text-block">
-              <v-container>
-                <h2 class="h5 mb-lg-3">北约源起</h2>
-                <p class="body-2">
-                  我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
-                  无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
-                </p>
-              </v-container>
-            </div>
-          </v-row>
-          <v-row class="wrap justify-center align-start step">
-            <div data-step="3-11" class="text-block">
-              <v-container>
-                <h2 class="h5 mb-lg-3">北约源起</h2>
-                <p class="body-2">
-                  我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
-                  无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
-                </p>
-              </v-container>
-            </div>
-          </v-row>
-          <v-row class="wrap justify-center align-start step">
-            <div data-step="3-12" class="text-block">
-              <v-container>
-                <h2 class="h5 mb-lg-3">北约源起</h2>
-                <p class="body-2">
-                  我我我呜呜呜呜呜呜呜呜无无无无无我呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿鹅鹅鹅饿
-                  无无无无无呜呜呜呜呜呜呜呜无无无无无无无无无无无呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃
-                </p>
-              </v-container>
-            </div>
-          </v-row>
-          <v-row class="wrap justify-center align-start step">
-            <div data-step="3-13" class="text-block"></div>
+            <div data-step="3-5" class="text-block"></div>
           </v-row>
         </v-col>
         <v-col class="scrolly-sticky pa-0" cols="9">
-          <component :is="renderEchart"></component>
+          <!-- <component :is="renderEchart"></component> -->
+          <D3Chart />>
         </v-col>
       </v-row>
     </v-container>
@@ -157,8 +70,6 @@ import { mapGetters } from "vuex";
 export default {
   name: "EchatsStory",
   components: {
-    EchartsBar,
-    EchartsGeo,
     D3Chart,
   },
   data: () => {

@@ -1,22 +1,22 @@
 // state
 const state = {
   chapter: {
-    "3-4": {
+    "4-0": {
       name: "海湾",
       index: null,
       onStepEnter: [],
     },
-    "3-5": {
+    "4-1": {
       index: [5],
       onStepEnter: [],
     },
-    "3-6": {
+    "4-2": {
       index: [2],
       onStepEnter: [],
       onStepExit: [{}, {}, {}, {}, {}],
       layers: {},
     },
-    "3-7": {
+    "4-3": {
       index: [4],
       onStepEnter: [
         {
@@ -27,13 +27,13 @@ const state = {
       onStepExit: {},
       layers: {},
     },
-    "3-8": {
+    "4-4": {
       index: [3],
       onStepEnter: [],
       onStepExit: {},
       layers: {},
     },
-    "3-9": {
+    "4-5": {
       index: [1],
       onStepEnter: [
         {
@@ -44,7 +44,7 @@ const state = {
       onStepExit: {},
       layers: {},
     },
-    "3-10": {
+    "4-6": {
       index: [0],
       onStepEnter: [
         {
@@ -55,7 +55,7 @@ const state = {
       onStepExit: {},
       layers: {},
     },
-    "3-11": {
+    "4-7": {
       index: [0, 1, 2, 3, 4, 5],
       onStepEnter: [],
       onStepExit: {},

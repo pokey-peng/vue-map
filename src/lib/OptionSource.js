@@ -2,6 +2,7 @@ import {
   getNotaAttrData,
   getNotaDataSet,
   generateWarData,
+  generateWarJureData,
 } from "./NotaDataSource";
 
 function getInitBarOption() {
@@ -400,4 +401,100 @@ function getGlobeOption(name, mapEcharts = null) {
         series: [],
       };
 }
-export { getInitBarOption, getMapOption, getWarOption, getGlobeOption };
+
+function getJureInitOption() {
+  let oriData = generateWarJureData();
+  let nameData = [oriData.name[0]];
+  let pData = [oriData["平民死亡"][0]];
+  let nData = [oriData["难民数量"][0]];
+  let option;
+  option = {
+    title: {
+      text: "平民死亡与难民数量",
+    },
+    tooltip: {
+      trigger: "axis",
+      axisPointer: {
+        type: "cross",
+        label: {
+          backgroundColor: "#283b56",
+        },
+      },
+    },
+    xAxis: {
+      type: "category",
+      boundaryGap: true,
+      data: nameData,
+      axisLabel: { interval: 0 },
+    },
+    yAxis: [
+      {
+        type: "value",
+        scale: true,
+        name: "平民死亡",
+      },
+      {
+        type: "value",
+        scale: true,
+        name: "难民数量",
+      },
+    ],
+    series: [
+      {
+        type: "bar",
+        name: "平民死亡",
+        yAxisIndex: 0,
+        data: pData,
+      },
+      {
+        type: "bar",
+        name: "难民数量",
+        yAxisIndex: 1,
+        data: nData,
+      },
+    ],
+  };
+  return option;
+}
+
+function getJureUpdateOption(name, isCalcu = true) {
+  let oriData = generateWarJureData();
+  console.log("死亡数据", oriData);
+  let index = oriData.name.indexOf(name);
+  let nameData;
+  let pData;
+  let nData;
+  if (isCalcu) {
+    nameData = oriData.name.slice(0, index + 1);
+    pData = oriData["平民死亡"].slice(0, index + 1);
+    nData = oriData["难民数量"].slice(0, index + 1);
+  } else {
+    nameData = [oriData.name[index]];
+    pData = [oriData["平民死亡"][index]];
+    nData = [oriData["难民数量"][index]];
+  }
+
+  let option = {
+    xAxis: { data: nameData },
+    series: [
+      {
+        name: "平民死亡",
+        data: pData,
+      },
+      {
+        name: "难民数量",
+        data: nData,
+      },
+    ],
+  };
+  return option;
+}
+
+export {
+  getInitBarOption,
+  getMapOption,
+  getWarOption,
+  getGlobeOption,
+  getJureInitOption,
+  getJureUpdateOption,
+};

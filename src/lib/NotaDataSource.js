@@ -736,6 +736,18 @@ function generateWarData(name) {
   console.log("参战兵力从war", resultData);
   return resultData;
 }
+function generateWarJureData() {
+  let dataSource = { name: [], 平民死亡: [], 难民数量: [] };
+  let order = ["海湾", "科索沃", "阿富汗", "伊拉克", "利比亚", "叙利亚"];
+  let warData2 = warData.slice(0);
+  warData2.sort((a, b) => order.indexOf(a["名称"]) - order.indexOf(b["名称"]));
+  warData2.forEach((item) => {
+    dataSource.name.push(item["名称"]);
+    dataSource["平民死亡"].push(item["平民死亡"]);
+    dataSource["难民数量"].push(item["难民数量"]);
+  });
+  return dataSource;
+}
 async function getWarCountryData() {
   let response = await axios.get(
     process.env.BASE_URL + "GeoData/warCountry.geojson"
@@ -759,4 +771,10 @@ async function getWarCountryData() {
   //console.log("战争国家: ", data);
   return data;
 }
-export { getNotaAttrData, getNotaDataSet, getWarCountryData, generateWarData };
+export {
+  getNotaAttrData,
+  getNotaDataSet,
+  getWarCountryData,
+  generateWarData,
+  generateWarJureData,
+};

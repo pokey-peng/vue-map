@@ -35,6 +35,7 @@
             v-for="(value, key) in items"
             :key="key"
             @click="scrollTo(value)"
+            class="NavList"
           >
             <v-list-item-title>{{ key }} </v-list-item-title>
           </v-list-item>
@@ -49,9 +50,10 @@ export default {
   data() {
     return {
       items: {
-        welcome: "welcome",
-        MapScroll: "map-container-1",
-        EchartsContainer: "EchartsContainer",
+        起始页: "welcome",
+        东扩地图: "map-container-1",
+        军费军力: "EchartsContainer",
+        三维地球: "globalContainer",
       },
       offset: true,
     };
@@ -62,8 +64,7 @@ export default {
       // 打印出对应页面与窗口的距离
       //console.log(element.offsetTop);
       // 使用平滑属性，滑动到上方获取的距离
-      // 下方我只设置了top，当然 你也可以加上 left 让他横向滑动
-      // widow 根据浏览器滚动条，如果你是要在某个盒子里面产生滑动，记得修改
+
       window.scrollTo({
         top: element.offsetTop,
         behavior: "smooth",
@@ -72,4 +73,8 @@ export default {
   },
 };
 </script>
-<style scoped></style>
+<style scoped>
+.NavList {
+  z-index: 99;
+}
+</style>

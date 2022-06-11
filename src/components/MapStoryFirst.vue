@@ -229,6 +229,7 @@ export default {
         EventBus.$emit("showSymbol");
         EventBus.$emit("setFillImage");
       } else {
+        EventBus.$emit("hideFillImage");
         clearTimeout(this.timeId);
       }
     },
