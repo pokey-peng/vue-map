@@ -28,6 +28,7 @@ export default {
   methods: {
     initChart() {
       let option = {
+        color: ["#f2ba28", "#d44646"],
         dataset: {},
         timeline: {
           bottom: "10%",
@@ -43,23 +44,7 @@ export default {
           right: "40%",
           textVerticalAlign: "middle",
         },
-        //背景颜色为灰色
-        backgroundColor: new this.$echarts.graphic.RadialGradient(
-          0.3,
-          0.3,
-          0.8,
-          [
-            {
-              offset: 0,
-              color: "#f7f8fa",
-            },
-            {
-              offset: 1,
-              color: "#cdd0d5",
-            },
-          ]
-        ),
-        grid: { top: "16%", bottom: "30%" },
+        grid: { top: "16%", bottom: "30%", right: "10%", left: "3%" },
         xAxis: [
           {
             type: "category",
@@ -105,7 +90,7 @@ export default {
               { min: 6.18, max: 12, label: "6.18-12", symbolSize: 100 },
             ],
             inRange: {
-              color: "#6c84c9",
+              color: "#d44646",
               symbolSize: [10, 35, 50, 70, 100],
             },
             outOfRange: {
@@ -135,7 +120,7 @@ export default {
               { min: 797, max: 2400, label: "797-2400", symbolSize: 100 },
             ],
             inRange: {
-              color: "#9dcd89",
+              color: "#f2ba28",
               symbolSize: [10, 35, 50, 70, 100],
             },
             outOfRange: {
@@ -148,15 +133,15 @@ export default {
           top: "40%",
           right: "1%",
           formatter: function (name) {
-            return name == "NOTA_Pao" ? "军费(%)" : "军力(千人)";
+            return name == "军费" ? "军费(%)" : "军力(千人)";
           },
           orient: "vertical",
-          data: ["NOTA_Pao", "NOTA_POP"],
+          data: ["军费", "军力"],
         },
         series: [
           {
             type: "scatter",
-            name: "NOTA_Pao",
+            name: "军费",
             //xAxisIndex: 0,
             //encode: { x: "NAME_ZH", y: "yCoord1" },
             emphasis: {
@@ -395,7 +380,7 @@ export default {
           {
             type: "scatter",
             //xAxisIndex: 1,
-            name: "NOTA_POP",
+            name: "军力",
             //encode: { x: "NAME_ZH", y: "yCoord2" },
             emphasis: {
               focus: "series",
@@ -449,14 +434,14 @@ export default {
             ],
             series: [
               {
-                name: "NOTA_Pao",
+                name: "军费",
                 datasetIndex: 1,
                 xAxisIndex: 0,
                 encode: { x: "NAME_ZH", y: "yCoord1", tooltip: ["1982军费"] },
               },
               {
                 datasetIndex: 1,
-                name: "NOTA_POP",
+                name: "军力",
                 xAxisIndex: 1,
                 encode: { x: "NAME_ZH", y: "yCoord2", tooltip: ["1982军力"] },
               },
@@ -484,13 +469,13 @@ export default {
             ],
             series: [
               {
-                name: "NOTA_Pao",
+                name: "军费",
                 datasetIndex: 2,
                 xAxisIndex: 0,
                 encode: { x: "NAME_ZH", y: "yCoord1", tooltip: ["1999军费"] },
               },
               {
-                name: "NOTA_POP",
+                name: "军力",
                 datasetIndex: 2,
                 xAxisIndex: 1,
                 encode: { x: "NAME_ZH", y: "yCoord2", tooltip: ["1999军力"] },
@@ -519,13 +504,13 @@ export default {
             ],
             series: [
               {
-                name: "NOTA_Pao",
+                name: "军费",
                 datasetIndex: 3,
                 xAxisIndex: 0,
                 encode: { x: "NAME_ZH", y: "yCoord1", tooltip: ["2004军费"] },
               },
               {
-                name: "NOTA_POP",
+                name: "军力",
                 datasetIndex: 3,
                 xAxisIndex: 1,
                 encode: { x: "NAME_ZH", y: "yCoord2", tooltip: ["2004军力"] },
@@ -554,13 +539,13 @@ export default {
             ],
             series: [
               {
-                name: "NOTA_Pao",
+                name: "军费",
                 datasetIndex: 4,
                 xAxisIndex: 0,
                 encode: { x: "NAME_ZH", y: "yCoord1", tooltip: ["2009军费"] },
               },
               {
-                name: "NOTA_POP",
+                name: "军力",
                 datasetIndex: 4,
                 xAxisIndex: 1,
                 encode: { x: "NAME_ZH", y: "yCoord2", tooltip: ["2009军力"] },
@@ -589,13 +574,13 @@ export default {
             ],
             series: [
               {
-                name: "NOTA_Pao",
+                name: "军费",
                 datasetIndex: 5,
                 xAxisIndex: 0,
                 encode: { x: "NAME_ZH", y: "yCoord1", tooltip: ["2017军费"] },
               },
               {
-                name: "NOTA_POP",
+                name: "军力",
                 datasetIndex: 5,
                 xAxisIndex: 1,
                 encode: { x: "NAME_ZH", y: "yCoord2", tooltip: ["2017军力"] },
@@ -624,13 +609,13 @@ export default {
             ],
             series: [
               {
-                name: "NOTA_Pao",
+                name: "军费",
                 datasetIndex: 6,
                 xAxisIndex: 0,
                 encode: { x: "NAME_ZH", y: "yCoord1", tooltip: ["2020军费"] },
               },
               {
-                name: "NOTA_POP",
+                name: "军力",
                 datasetIndex: 6,
                 xAxisIndex: 1,
                 encode: { x: "NAME_ZH", y: "yCoord2", tooltip: ["2020军力"] },
@@ -663,7 +648,28 @@ export default {
   position: absolute;
   right: 0;
   top: 0;
-  background-color: #efe5e0;
+  /* background-image: linear-gradient(
+      102deg,
+      rgba(5, 52, 120, 1) 0%,
+      rgba(123, 146, 181, 0.7) 0%,
+      rgba(241, 243, 245, 1) 100%
+    ),
+    url("@/assets/img/MilitaryBack.jpg"); */
+  /* background-image: linear-gradient(
+      4deg,
+      rgba(226, 219, 224, 0.75) 30%,
+      rgba(155, 152, 154, 0.3) 45%,
+      rgba(87, 86, 85, 0.3) 100%
+    ),
+    url("@/assets/img/MilitaryBack.jpg"); */
+  background-image: radial-gradient(transparent 10%, #0f0e0f 75%),
+    url("@/assets/img/MilitaryBack.jpg");
+  /* background-image: url("@/assets/img/MilitaryBack.jpg"); */
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  /* background-size: cover; */
 }
 
 #echart-d3 {
