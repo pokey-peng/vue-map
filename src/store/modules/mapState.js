@@ -38,7 +38,7 @@ const state = {
       onStepEnter: [
         {
           layer: "final Europe",
-          opacity: 0,
+          opacity: 1,
         },
       ],
     },
@@ -161,6 +161,24 @@ const state = {
         {
           layer: "final Europe",
           opacity: 1,
+        },
+      ],
+      onStepExit: {},
+      layers: {},
+    },
+    "2-8": {
+      camera: {
+        center: { lon: -20.79705, lat: 53.68704 },
+        zoom: 3,
+        pitch: 0.0,
+        bearing: 0.0,
+        speed: 0.6,
+        curve: 1.0,
+      },
+      onStepEnter: [
+        {
+          layer: "final Europe",
+          opacity: 0,
         },
       ],
       onStepExit: {},

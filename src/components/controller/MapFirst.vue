@@ -7,6 +7,8 @@ import { mapGetters } from "vuex";
 import { setLayerOpacity } from "../../lib/SetLayer";
 import { EventBus } from "@/lib/bus";
 import { getPoint2, generateDisArrary } from "@/lib/AnimateBorder";
+import { getCountryText } from "@/lib/NotaDataSource";
+//import * as turf from "@turf/turf";
 let map;
 let disArray, pArray;
 [disArray, pArray] = generateDisArrary();
@@ -43,6 +45,9 @@ export default {
       console.log(option);
       map.flyTo(option["camera"]);
       this.setLayer(option["onStepEnter"]);
+      if (this.step === "2-7") {
+        EventBus.$emit("setToolTip");
+      }
     },
     currentYear() {
       console.log(this.currentYear);
@@ -91,25 +96,34 @@ export default {
             map.addImage("NOTA_icon", image, { pixelRatio: 20 });
           }
         );
-        //map.setPaintProperty("final Europe", "fill-pattern", null, {});
-        map.addSource("point2", {
-          type: "geojson",
-          data: point2,
-        });
-        map.addLayer({
-          id: "point2",
-          source: "point2",
-          type: "symbol",
-          layout: {
-            "icon-image": "airfield",
-            "icon-rotate": ["get", "bearing"],
-            "icon-rotation-alignment": "map",
-            "icon-allow-overlap": true,
-            "icon-ignore-placement": true,
-          },
-        });
-        //map.setPaintProperty("final Europe", "fill-opacity", 0, {});
-        map.setPaintProperty("point2", "icon-opacity", 0, {});
+        map.loadImage(
+          process.env.BASE_URL + "icon/dataIcon/TanKe.png",
+          (err, image) => {
+            if (err) throw err;
+            map.addImage("NOTA_flag", image, { pixelRatio: 5 });
+            //map.setPaintProperty("final Europe", "fill-pattern", null, {});
+            map.addSource("point2", {
+              type: "geojson",
+              data: point2,
+            });
+            map.addLayer({
+              id: "point2",
+              source: "point2",
+              type: "symbol",
+              layout: {
+                "icon-image": "NOTA_flag",
+                "icon-rotate": ["get", "bearing"],
+                "icon-rotation-alignment": "map",
+                "icon-allow-overlap": true,
+                "icon-ignore-placement": true,
+              },
+            });
+            map.setPaintProperty("point2", "icon-opacity", 0, {});
+          }
+        );
+
+        map.setPaintProperty("final Europe", "fill-opacity", 0, {});
+
         EventBus.$on("ChangeBorder", (curYear) => {
           if (curYear === "1949") {
             console.log("检测到变化:", curYear);
@@ -156,6 +170,29 @@ export default {
         });
         EventBus.$on("hideFillImage", () => {
           map.setPaintProperty("final Europe", "fill-pattern", null, {});
+        });
+        EventBus.$on("setToolTip", () => {
+          const popup = new this.$mapboxgl.Popup({
+            closeButton: false,
+            closeOnClick: false,
+          });
+
+          map.on("mouseenter", "final Europe", (e) => {
+            map.getCanvas().style.cursor = "pointer";
+            const name = e.features[0].properties["NAME_ZH"];
+            const coordinates = [
+              e.features[0].properties["LABEL_X"],
+              e.features[0].properties["LABEL_Y"],
+            ];
+            const description = getCountryText(name);
+            console.log("提示框:", description);
+            popup.setLngLat(coordinates).setHTML(description).addTo(map);
+          });
+
+          map.on("mouseleave", "final Europe", () => {
+            map.getCanvas().style.cursor = "";
+            popup.remove();
+          });
         });
       });
 

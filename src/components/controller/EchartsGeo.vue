@@ -102,7 +102,27 @@ export default {
           [params.data[0], params.data[1]],
           true
         );
+        let option = {
+          geo: { id: "baseGeo", regions: [] },
+          series: [
+            {
+              name: "symbolWar",
+              type: "scatter",
+              coordinateSystem: "geo",
+              symbol: "arrow",
+              itemStyle: { color: "#2a308b" },
+              data: [],
+            },
+          ],
+        };
         console.log("地球组件配置: ", seriesOption);
+        let [warSymbolData, labelData] = getSymbolWar(
+          params.data[2].name,
+          true
+        );
+        option.series[1].data = warSymbolData;
+        option.geo.regions = labelData;
+        mapChart.setOption(option);
         myChart.setOption(seriesOption, { replaceMerge: ["series"] });
       });
     },
@@ -141,10 +161,8 @@ export default {
             name: "symbolWar",
             type: "scatter",
             coordinateSystem: "geo",
-            symbol:
-              "image://" + process.env.NODE_ENV === "production"
-                ? "https://"
-                : "http://localhost:8081/" + "icon/dataIcon/坦克.png",
+            symbol: "arrow",
+            itemStyle: { color: "#2a308b" },
             data: [],
           },
         ],
@@ -171,6 +189,24 @@ export default {
           option.series[1].data = warSymbolData;
           option.geo.regions = labelData;
         });
+        if (indexs.length !== 1) {
+          option.series[1].data = [];
+          let dOption = ["阿富汗", "伊拉克", "叙利亚", "科索沃", "利比亚"].map(
+            (item) => {
+              return {
+                name: item,
+                label: {
+                  show: true,
+                  offset: [20, 20],
+                  color: "#a90000",
+                  fontFamily: "Microsoft YaHei",
+                  fontSize: 15,
+                },
+              };
+            }
+          );
+          option.geo.regions = dOption;
+        }
         viewOption.globe.viewControl.targetCoord = this.warCoordSys(indexs[0]);
         barSeries =
           indexs.length > 1

@@ -1,8 +1,11 @@
 <template>
   <section id="map-container-1" class="scrolly-overlay">
-    <div class="scrolly-sticky" :class="{ interactive: step === '2-7' }">
+    <div
+      class="scrolly-sticky"
+      :class="{ interactive: step === '2-7' || step === '2-8' }"
+    >
       <MapFirst :yearLabel="switchYear" />
-      <div id="slideContainer" v-show="currentPage === 7 ? true : false">
+      <div id="slideContainer" v-show="currentPage === 8 ? true : false">
         <v-btn
           class="player-btn rounded-circle"
           elevation="3"
@@ -132,6 +135,9 @@
       <v-row class="wrap justify-center align-start step">
         <div data-step="2-8" class="text-block"></div>
       </v-row>
+      <v-row class="wrap justify-center align-start step">
+        <div data-step="2-9" class="text-block"></div>
+      </v-row>
     </v-container>
   </section>
 </template>
@@ -157,7 +163,17 @@ export default {
         "2017",
         "2020",
       ],
-      switchLabel: [],
+      switchLabel: [
+        "1949",
+        "1952",
+        "1955",
+        "1982",
+        "1999",
+        "2004",
+        "2009",
+        "2017",
+        "2020",
+      ],
       isPlay: false,
       timeId: null,
     };
@@ -217,6 +233,8 @@ export default {
     handlePageState(direction, currentStep) {
       if (currentStep == "2-7") {
         this.$store.dispatch("mapView/updatePage", 7);
+      } else if (currentStep == "2-8") {
+        this.$store.dispatch("mapView/updatePage", 8);
       }
     },
     pause() {
@@ -226,7 +244,7 @@ export default {
         EventBus.$emit("showSymbol");
         EventBus.$emit("setFillImage");
       } else {
-        EventBus.$emit("hideFillImage");
+        //EventBus.$emit("hideFillImage");
         clearTimeout(this.timeId);
       }
     },

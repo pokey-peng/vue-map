@@ -1,6 +1,7 @@
 import OriginData from "../../public/AttributeData/newEuropeAttribute.json";
 import * as axios from "axios";
 import warData from "../../public/AttributeData/war.json";
+import countryDes from "../../public/AttributeData/countryDes.json";
 
 function getNotaAttrData() {
   let dimension = [
@@ -771,10 +772,15 @@ async function getWarCountryData() {
   //console.log("战争国家: ", data);
   return data;
 }
+
+function getCountryText(name) {
+  return countryDes[name];
+}
 export {
   getNotaAttrData,
   getNotaDataSet,
   getWarCountryData,
   generateWarData,
   generateWarJureData,
+  getCountryText,
 };
