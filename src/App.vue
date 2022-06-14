@@ -3,6 +3,7 @@
     <NavigationBar />
     <v-main>
       <router-view />
+      <AppSideBar />
     </v-main>
     <AppFooter />
   </v-app>
@@ -11,6 +12,7 @@
 <script>
 import NavigationBar from "./views/AppBar.vue";
 import AppFooter from "./views/AppFooter.vue";
+import AppSideBar from "./views/AppSideBar.vue";
 export default {
   name: "App",
 
@@ -20,6 +22,7 @@ export default {
   components: {
     NavigationBar,
     AppFooter,
+    AppSideBar,
   },
 };
 </script>

@@ -280,7 +280,7 @@ function getGlobeOption(name, mapEcharts = null) {
     "https://fastly.jsdelivr.net/gh/apache/echarts-website@asf-site/examples";
   return name !== "globe"
     ? {
-        backgroundColor: "#4d78cc",
+        backgroundColor: "#84A0E7",
         // dataset: getNotaDataSet(),
         tooltip: {
           show: true,
@@ -307,6 +307,16 @@ function getGlobeOption(name, mapEcharts = null) {
             [-180, 90],
             [180, -90],
           ],
+          itemStyle: {
+            borderColor: "#2B2346",
+            normal: {
+              areaColor: "#D5BFAE",
+              borderColor: "#161417",
+            },
+            emphasis: {
+              areaColor: "#357cf8",
+            },
+          },
         },
         series: [
           {
@@ -325,7 +335,7 @@ function getGlobeOption(name, mapEcharts = null) {
                 },
                 {
                   offset: 1,
-                  color: "#ff52e5", // 100% 处的颜色
+                  color: "#E25416", // 100% 处的颜色
                 },
               ],
               global: false, // 缺省为 false
@@ -359,7 +369,7 @@ function getGlobeOption(name, mapEcharts = null) {
           // heightTexture:
           //   ROOT_PATH + "/data-gl/asset/bathymetry_bw_composite_4k.jpg",
           displacementScale: 0.04,
-          shading: "lambert",
+          shading: "color",
           environment: ROOT_PATH + "/data-gl/asset/starfield.jpg",
           light: {
             ambient: {
@@ -491,6 +501,19 @@ function getJureUpdateOption(name, isCalcu = true) {
   return option;
 }
 
+function getBaseMapNATO() {
+  let dataset = getNotaAttrData();
+  let index = dataset[0].indexOf("NAME_ZH");
+  let data = [];
+  dataset[1].forEach((item) => {
+    data.push({
+      name: item[index],
+      itemStyle: { areaColor: "#a90000", color: "#a90000" },
+    });
+  });
+  return data;
+}
+
 export {
   getInitBarOption,
   getMapOption,
@@ -498,4 +521,5 @@ export {
   getGlobeOption,
   getJureInitOption,
   getJureUpdateOption,
+  getBaseMapNATO,
 };

@@ -28,7 +28,7 @@ export default {
   methods: {
     initChart() {
       let option = {
-        color: ["#f2ba28", "#d44646"],
+        color: ["#a90000", "#00008b"],
         dataset: {},
         timeline: {
           bottom: "10%",
@@ -36,27 +36,67 @@ export default {
           replaceMerge: "xAxis",
           data: ["1982", "1999", "2004", "2009", "2017", "2020"],
         },
-        title: {
-          text: "北约各国军费军力变化",
-          subtext: "1982年数据",
-          top: "2%",
-          textAlign: "center",
-          right: "40%",
-          textVerticalAlign: "middle",
-        },
+        textStyle: { color: "#ffffff" },
+        title: [
+          {
+            text: "北约各国军费军力变化",
+            subtext: "1982年数据",
+            top: "2%",
+            textAlign: "center",
+            right: "30%",
+            textVerticalAlign: "middle",
+            textStyle: {
+              color: "#ffffff",
+              fontSize: 30,
+              fontFamily: "sans-serif",
+              fontStyle: "normal",
+            },
+            subtextStyle: {
+              color: "#ffffff",
+              fontSize: 20,
+              fontStyle: "italic",
+            },
+          },
+          {
+            id: "timeTitle",
+            text: "1982",
+            textAlign: "center",
+            left: "14%",
+            top: "2%",
+            textStyle: {
+              color: "#ffffff",
+              fontSize: 100,
+            },
+          },
+        ],
         grid: { top: "16%", bottom: "30%", right: "10%", left: "3%" },
         xAxis: [
           {
             type: "category",
             axisLine: { show: false },
             axisTick: { show: false, alignWithLabel: true },
-            axisLabel: { interval: 0, rotate: 45 },
+            axisLabel: {
+              interval: 0,
+              rotate: 45,
+              fontFamily: "sans-serif",
+              fontStyle: "normal",
+              fontWeight: "bold",
+              fontSize: 16,
+              // color: "rgba(89, 82, 82, 1)",
+            },
           },
           {
             type: "category",
             axisLine: { show: false },
             axisTick: { show: false, alignWithLabel: true },
-            axisLabel: { show: true, interval: 0, rotate: 45 },
+            axisLabel: {
+              show: true,
+              interval: 0,
+              rotate: 45,
+              fontFamily: "sans-serif",
+              fontStyle: "normal",
+              fontWeight: "bold",
+            },
           },
         ],
         yAxis: {
@@ -73,7 +113,7 @@ export default {
             id: "军费",
             type: "piecewise",
             show: true,
-            left: "right",
+            left: "90%",
             bottom: "65%",
             seriesIndex: 0,
 
@@ -89,19 +129,36 @@ export default {
               },
               { min: 6.18, max: 12, label: "6.18-12", symbolSize: 100 },
             ],
+            textStyle: {
+              color: "#ffffff",
+              fontStyle: "italic",
+            },
             inRange: {
-              color: "#d44646",
+              color: "#a90000",
+              opacity: 1,
               symbolSize: [10, 35, 50, 70, 100],
             },
             outOfRange: {
               symbolSize: 5,
               color: "#6b6e76",
             },
+            itemStyle: {
+              shadowBlur: 10,
+              shadowColor: "rgba(120, 36, 50, 0.5)",
+              shadowOffsetY: 5,
+              color: new this.$echarts.graphic.RadialGradient(0.4, 0.3, 1, [
+                {
+                  offset: 0,
+                  color: "#a90000",
+                },
+              ]),
+            },
+            align: "left",
           },
           {
             id: "军力",
             show: true,
-            left: "right",
+            left: "90%",
             bottom: "40%",
             // dimension: 30,
             // min: 0,
@@ -119,21 +176,30 @@ export default {
               },
               { min: 797, max: 2400, label: "797-2400", symbolSize: 100 },
             ],
+            textStyle: {
+              color: "#ffffff",
+              fontStyle: "italic",
+            },
             inRange: {
-              color: "#f2ba28",
+              color: "#00008b",
+              opacity: 1,
               symbolSize: [10, 35, 50, 70, 100],
             },
             outOfRange: {
               symbolSize: 5,
               color: "#6b6e76",
             },
+            align: "left",
           },
         ],
         legend: {
           top: "40%",
           right: "1%",
           formatter: function (name) {
-            return name == "军费" ? "军费(%)" : "军力(千人)";
+            return name == "军费" ? "军费占GDP比重(%)" : "军力(千人)";
+          },
+          textStyle: {
+            color: "#ffffff",
           },
           orient: "vertical",
           data: ["军费", "军力"],
@@ -175,204 +241,204 @@ export default {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/Albania.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 Belgium: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/Belgium.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 Bulgaria: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/Bulgaria.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 Canada: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/Canada.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 Croatia: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/Croatia.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 CzechRepublic: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/CzechRepublic.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 Denmark: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/Denmark.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 Estonia: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/Estonia.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 France: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/France.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 Germany: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/Germany.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 Greece: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/Greece.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 Hungary: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/Hungary.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 Italy: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/Italy.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 Latvia: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/Latvia.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 Lithuania: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/Lithuania.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 Luxembourg: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/Luxembourg.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 Montenegro: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/Montenegro.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 Netherlands: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/Netherlands.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 NorthMacedonia: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/NorthMacedonia.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 Norway: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/Norway.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 Poland: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/Poland.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 Portugal: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/Portugal.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 Romania: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/Romania.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 SlovakRepublic: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/SlovakRepublic.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 Slovenia: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/Slovenia.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 Spain: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/Spain.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 Turkey: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/Turkey.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 UnitedKingdom: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/UnitedKingdom.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
                 UnitedStates: {
                   backgroundColor: {
                     image: process.env.BASE_URL + "icon/UnitedStates.png",
                   },
-                  width: 20,
-                  height: 20,
+                  width: 40,
+                  height: 40,
                 },
               },
             },
@@ -413,7 +479,10 @@ export default {
         // 设置每一时期映射的维度
         options: [
           {
-            title: { subtext: "1982年数据" },
+            title: [
+              { subtext: "冷战前(1982年)" },
+              { id: "timeTitle", text: "1982" },
+            ],
             xAxis: [
               {
                 type: "category",
@@ -448,7 +517,10 @@ export default {
             ],
           },
           {
-            title: { subtext: "1999年数据" },
+            title: [
+              { subtext: "第一次东扩后(1999年)" },
+              { id: "timeTitle", text: "1999" },
+            ],
             xAxis: [
               {
                 type: "category",
@@ -483,7 +555,10 @@ export default {
             ],
           },
           {
-            title: { subtext: "2004年数据" },
+            title: [
+              { subtext: "第二次东扩后(2004年)" },
+              { id: "timeTitle", text: "2004" },
+            ],
             xAxis: [
               {
                 type: "category",
@@ -518,7 +593,10 @@ export default {
             ],
           },
           {
-            title: { subtext: "2009年数据" },
+            title: [
+              { subtext: "第三次东扩后(2009年)" },
+              { id: "timeTitle", text: "2009" },
+            ],
             xAxis: [
               {
                 type: "category",
@@ -543,17 +621,42 @@ export default {
                 datasetIndex: 4,
                 xAxisIndex: 0,
                 encode: { x: "NAME_ZH", y: "yCoord1", tooltip: ["2009军费"] },
+                itemStyle: {
+                  shadowBlur: 10,
+                  shadowColor: "rgba(120, 36, 50, 0.5)",
+                  shadowOffsetY: 5,
+                  color: new this.$echarts.graphic.RadialGradient(0.4, 0.3, 1, [
+                    {
+                      offset: 0,
+                      color: "#a90000",
+                    },
+                  ]),
+                },
               },
               {
                 name: "军力",
                 datasetIndex: 4,
                 xAxisIndex: 1,
                 encode: { x: "NAME_ZH", y: "yCoord2", tooltip: ["2009军力"] },
+                itemStyle: {
+                  shadowBlur: 10,
+                  shadowColor: "rgba(25, 100, 150, 0.5)",
+                  shadowOffsetY: 5,
+                  color: new this.$echarts.graphic.RadialGradient(0.4, 0.3, 1, [
+                    {
+                      offset: 0,
+                      color: "#00008b",
+                    },
+                  ]),
+                },
               },
             ],
           },
           {
-            title: { subtext: "2017年数据" },
+            title: [
+              { subtext: "第四次东扩后(2017年)" },
+              { id: "timeTitle", text: "2017" },
+            ],
             xAxis: [
               {
                 type: "category",
@@ -588,7 +691,10 @@ export default {
             ],
           },
           {
-            title: { subtext: "2020年数据" },
+            title: [
+              { subtext: "第五次东扩后(2020年)" },
+              { id: "timeTitle", text: "2020" },
+            ],
             xAxis: [
               {
                 type: "category",
@@ -662,8 +768,11 @@ export default {
       rgba(87, 86, 85, 0.3) 100%
     ),
     url("@/assets/img/MilitaryBack.jpg"); */
-  background-image: radial-gradient(transparent 10%, #0f0e0f 75%),
-    url("@/assets/img/MilitaryBack.jpg");
+  background-image: linear-gradient(
+      rgba(228, 235, 245, 0.2),
+      rgba(228, 235, 245, 0.2)
+    ),
+    url("@/assets/img/NATO_Back3.jpg");
   /* background-image: url("@/assets/img/MilitaryBack.jpg"); */
   background-size: 100% 100%;
   background-repeat: no-repeat;

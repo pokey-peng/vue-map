@@ -24,6 +24,7 @@ import {
   getGlobeOption,
   getJureInitOption,
   getJureUpdateOption,
+  getBaseMapNATO,
 } from "../../lib/OptionSource";
 
 let myChart = null;
@@ -56,7 +57,17 @@ export default {
       if (!mapChart && !myChart) {
         return;
       }
+      if (newVal === "4-0") {
+        mapChart.setOption({
+          geo: { id: "baseGeo", regions: getBaseMapNATO() },
+        });
+      } else if (newVal === "4-1") {
+        mapChart.setOption({
+          geo: { id: "baseGeo", regions: [] },
+        });
+      }
       console.log(newVal);
+      //console.log(getBaseMapNATO());
       this.setJureChart(newVal, this.warIndexs(newVal));
       this.setWarOption(this.warIndexs(newVal));
     },
@@ -100,8 +111,10 @@ export default {
       jureChart.setOption(getJureInitOption());
     },
     setJureChart(step, indexs) {
-      if (step === "4-1") {
-        this.jureShow = true;
+      if (step === "4-1" || step == "4-7") {
+        if (!this.jureShow) {
+          this.jureShow = true;
+        }
         this.initJureEcharts();
       } else if (step === "4-8" || step === "4-0") {
         this.jureShow = false;
@@ -176,8 +189,9 @@ export default {
   right: 1rem;
   width: 16rem;
   height: 15rem;
-  padding-left: 10px;
-  padding-right: 10px;
+  /* padding-left: 10px;
+  padding-right: 10px; */
+  padding: 0;
   background-color: antiquewhite;
 }
 </style>

@@ -22,19 +22,19 @@
           style="position: relative"
         >
           <div class="text-block text-center white--text">
-            <p class="font-secondary">电子地图学</p>
+            <p class="font-secondary">电子地图学期末作品</p>
 
             <h1 class="text-h1 font-secondary white--text my-lg-6">
               “冷战余孽” —— 北约编年史
             </h1>
             <address class="font-secondary mb-4">
-              小组成员：王骁骁、何知远、边朵、蒋文芳、阎宇晨
+              小组成员：王骁骁、何知远、边朵、蒋文芳、阎宇晨、彭棋
             </address>
 
-            <p class="body-1 font-weight-bold font-italic mt-lg-12 mb-0">
+            <!-- <p class="body-1 font-weight-bold font-italic mt-lg-12 mb-0">
               <v-icon small color="grey lighten-4">mdi-allergy</v-icon>
               当出现此图标时，可以与地图进行交互
-            </p>
+            </p> -->
           </div>
         </v-row>
       </div>

@@ -6,7 +6,6 @@
 import { mapGetters } from "vuex";
 import { setLayerOpacity } from "../../lib/SetLayer";
 import { EventBus } from "@/lib/bus";
-import * as turf from "@turf/turf";
 import { getPoint2, generateDisArrary } from "@/lib/AnimateBorder";
 let map;
 let disArray, pArray;

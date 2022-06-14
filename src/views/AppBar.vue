@@ -1,16 +1,21 @@
 <template>
   <div>
     <v-app-bar app color="blue-grey darken-2" dark>
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="setDrawer"></v-app-bar-nav-icon>
 
+      <v-spacer></v-spacer>
       <v-toolbar-title>北约故事地图</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
-      <v-btn icon>
+      <!-- <v-btn icon>
         <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-
+      </v-btn> -->
+      <!-- <v-btn icon
+        ><v-icon size="24px">
+          {{ icon[0] }}
+        </v-icon></v-btn
+      > -->
       <v-menu
         left
         bottom
@@ -45,10 +50,12 @@
   </div>
 </template>
 <script>
+import { EventBus } from "@/lib/bus";
 export default {
   name: "NavigationBar",
   data() {
     return {
+      icon: ["mdi-github"],
       items: {
         起始页: "welcome",
         东扩地图: "map-container-1",
@@ -69,6 +76,9 @@ export default {
         top: element.offsetTop,
         behavior: "smooth",
       });
+    },
+    setDrawer() {
+      EventBus.$emit("showSideBar");
     },
   },
 };
