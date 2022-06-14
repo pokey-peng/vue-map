@@ -25,6 +25,7 @@ import {
   getJureInitOption,
   getJureUpdateOption,
   getBaseMapNATO,
+  getSymbolWar,
 } from "../../lib/OptionSource";
 
 let myChart = null;
@@ -34,7 +35,7 @@ let barSeries = {};
 export default {
   name: "EchartsGeo",
   data: () => {
-    return { warCoord: [], jureShow: false };
+    return { warCoord: [], jureShow: false, natoShow: false };
   },
   computed: {
     ...mapGetters("mapView", ["currentPage", "step"]),
@@ -57,19 +58,19 @@ export default {
       if (!mapChart && !myChart) {
         return;
       }
-      if (newVal === "4-0") {
-        mapChart.setOption({
-          geo: { id: "baseGeo", regions: getBaseMapNATO() },
-        });
-      } else if (newVal === "4-1") {
-        mapChart.setOption({
-          geo: { id: "baseGeo", regions: [] },
-        });
-      }
+
       console.log(newVal);
       //console.log(getBaseMapNATO());
       this.setJureChart(newVal, this.warIndexs(newVal));
       this.setWarOption(this.warIndexs(newVal));
+      if (newVal === "4-0") {
+        if (!this.natoShow) {
+          mapChart.setOption({
+            geo: { id: "baseGeo", regions: getBaseMapNATO() },
+          });
+          this.natoShow = true;
+        }
+      }
     },
   },
   methods: {
@@ -133,7 +134,20 @@ export default {
     },
     setWarOption(indexs) {
       let option = {
-        series: { name: "curWar", show: true, data: [] },
+        geo: { id: "baseGeo", regions: [] },
+        series: [
+          { name: "curWar", show: true, data: [] },
+          {
+            name: "symbolWar",
+            type: "scatter",
+            coordinateSystem: "geo",
+            symbol:
+              "image://" + process.env.NODE_ENV === "production"
+                ? "https://"
+                : "http://localhost:8081/" + "icon/dataIcon/坦克.png",
+            data: [],
+          },
+        ],
       };
       let viewOption = {
         globe: {
@@ -146,10 +160,16 @@ export default {
       barSeries = {};
       if (indexs === null || indexs === undefined) {
         viewOption.globe.viewControl.distance = 300;
-        option.series["show"] = false;
+        option.series[0]["show"] = false;
       } else {
         indexs.forEach((item) => {
-          option.series.data.push(this.warCoord[item]);
+          option.series[0].data.push(this.warCoord[item]);
+          let [warSymbolData, labelData] = getSymbolWar(
+            this.warCoord[item][2].name,
+            true
+          );
+          option.series[1].data = warSymbolData;
+          option.geo.regions = labelData;
         });
         viewOption.globe.viewControl.targetCoord = this.warCoordSys(indexs[0]);
         barSeries =
@@ -160,6 +180,7 @@ export default {
                 this.warCoordSys(indexs[0])
               );
       }
+      console.log("symbolOption:", option);
       mapChart.setOption(option);
       myChart.setOption({ series: [] }, { replaceMerge: ["series"] });
       myChart.setOption(viewOption);

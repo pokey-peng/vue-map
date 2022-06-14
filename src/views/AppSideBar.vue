@@ -81,12 +81,12 @@ export default {
           itemTitle: "军费军力",
           itemId: "#EchartsContainer",
           itemActive: false,
-          items: [{ title: "军费变化" }, { title: "军力变化" }],
+          items: [{ title: "军事投入" }, { title: "军力变化" }],
         },
         {
           imgSrc: process.env.BASE_URL + "icon/BarBack/globalWar.png",
           itemAction: "mdi-earth",
-          itemTitle: "三维地球",
+          itemTitle: "军事行动",
           itemId: "#globalContainer",
           itemActive: false,
           items: [

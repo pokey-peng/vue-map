@@ -301,7 +301,7 @@ function getGlobeOption(name, mapEcharts = null) {
           bottom: 0,
           //center: [0, 40],
           nameProperty: "NAME_ZH",
-          label: { show: true, fontFamily: "Microsoft YaHei" },
+          //label: { show: true, fontFamily: "Microsoft YaHei" },
           silent: true,
           boundingCoords: [
             [-180, 90],
@@ -508,9 +508,56 @@ function getBaseMapNATO() {
   dataset[1].forEach((item) => {
     data.push({
       name: item[index],
+      label: { show: true },
       itemStyle: { areaColor: "#a90000", color: "#a90000" },
     });
   });
+  return data;
+}
+
+function getSymbolWar(name, label = false) {
+  let warData = generateWarData(name);
+  let dataset = getNotaAttrData();
+  let labelData = [];
+  let data = (function () {
+    let optionData = [];
+    let nameIndex = dataset[0].indexOf("NAME_ZH");
+    let lngIndex = dataset[0].indexOf("LABEL_X");
+    let LatIndex = dataset[0].indexOf("LABEL_Y");
+    Object.keys(warData).forEach((key) => {
+      dataset[1].forEach((item) => {
+        if (item[nameIndex] !== key) {
+          return;
+        }
+        optionData.push([item[lngIndex], item[LatIndex], { name: key }]);
+      });
+      labelData.push({
+        name: key,
+        label: {
+          show: true,
+          offset: [10, 10],
+          color: "#0288D1",
+          fontFamily: "Microsoft YaHei",
+          fontSize: 15,
+        },
+      });
+    });
+    labelData.push({
+      name: name === "海湾" ? "伊拉克" : name,
+      label: {
+        show: true,
+        offset: [20, 20],
+        color: "#a90000",
+        fontFamily: "Microsoft YaHei",
+        fontSize: 15,
+      },
+    });
+    optionData.push([19.490468, 51.990316, { name: "波兰" }]);
+    return optionData;
+  })();
+  if (label) {
+    return [data, labelData];
+  }
   return data;
 }
 
@@ -522,4 +569,5 @@ export {
   getJureInitOption,
   getJureUpdateOption,
   getBaseMapNATO,
+  getSymbolWar,
 };
