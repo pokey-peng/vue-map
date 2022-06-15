@@ -58,7 +58,7 @@ export default {
             },
           },
         ],
-        grid: { top: "16%", bottom: "30%", right: "10%", left: "3%" },
+        grid: { top: "16%", bottom: "30%", right: "12%", left: "3%" },
         xAxis: [
           {
             type: "category",
@@ -183,7 +183,7 @@ export default {
         ],
         legend: {
           top: "40%",
-          right: "1%",
+          right: 0,
           formatter: function (name) {
             return name == "军费" ? "军费占GDP比重(%)" : "军力(千人)";
           },

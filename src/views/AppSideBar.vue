@@ -1,5 +1,5 @@
 <template>
-  <div class="sideBar">
+  <div class="sideBar" v-show="drawer">
     <v-navigation-drawer
       v-model="drawer"
       absolute
