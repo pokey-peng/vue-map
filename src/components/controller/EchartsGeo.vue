@@ -120,10 +120,11 @@ export default {
           params.data[2].name,
           true
         );
-        option.series[1].data = warSymbolData;
+        option.series[0].data = warSymbolData;
         option.geo.regions = labelData;
         mapChart.setOption(option);
         myChart.setOption(seriesOption, { replaceMerge: ["series"] });
+        jureChart.setOption(getJureUpdateOption(params.data[2].name, false));
       });
     },
     initJureEcharts() {

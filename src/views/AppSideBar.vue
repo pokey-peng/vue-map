@@ -84,7 +84,7 @@ export default {
           items: [{ title: "军事投入" }, { title: "军力变化" }],
         },
         {
-          imgSrc: process.env.BASE_URL + "icon/BarBack/globalWar.png",
+          imgSrc: process.env.BASE_URL + "icon/BarBack/globeFinall.png",
           itemAction: "mdi-earth",
           itemTitle: "军事行动",
           itemId: "#globalContainer",

@@ -194,7 +194,14 @@ let warShow = {
   土耳其: false,
 };
 function getWarOption(name, coord = [], click = false) {
-  warShow[name] = !warShow[name];
+  if (click) {
+    warShow[name] = !warShow[name];
+    Object.keys(warShow).forEach((key) => {
+      if (key !== name) {
+        warShow[key] = false;
+      }
+    });
+  }
   if (!warShow[name] && click) {
     return {
       series: [],
@@ -220,7 +227,7 @@ function getWarOption(name, coord = [], click = false) {
         ]);
       });
     });
-    optionData.push([19.490468, 51.990316, 2500, { name: "波兰" }]);
+    //optionData.push([19.490468, 51.990316, 2500, { name: "波兰" }]);
     return optionData;
   })();
   let newData = (function () {
@@ -552,7 +559,7 @@ function getSymbolWar(name, label = false) {
         fontSize: 15,
       },
     });
-    optionData.push([19.490468, 51.990316, { name: "波兰" }]);
+    //optionData.push([19.490468, 51.990316, { name: "波兰" }]);
     return optionData;
   })();
   if (label) {
