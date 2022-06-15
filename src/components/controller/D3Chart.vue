@@ -57,17 +57,6 @@ export default {
               fontStyle: "italic",
             },
           },
-          {
-            id: "timeTitle",
-            text: "1982",
-            textAlign: "center",
-            left: "14%",
-            top: "2%",
-            textStyle: {
-              color: "#ffffff",
-              fontSize: 100,
-            },
-          },
         ],
         grid: { top: "16%", bottom: "30%", right: "10%", left: "3%" },
         xAxis: [
@@ -114,7 +103,7 @@ export default {
             type: "piecewise",
             show: true,
             left: "90%",
-            bottom: "65%",
+            bottom: "25%",
             seriesIndex: 0,
 
             pieces: [
@@ -159,7 +148,7 @@ export default {
             id: "军力",
             show: true,
             left: "90%",
-            bottom: "40%",
+            bottom: "75%",
             // dimension: 30,
             // min: 0,
             // max: 12,
@@ -479,10 +468,7 @@ export default {
         // 设置每一时期映射的维度
         options: [
           {
-            title: [
-              { subtext: "冷战前(1982年)" },
-              { id: "timeTitle", text: "1982" },
-            ],
+            title: [{ subtext: "冷战前(1982年)" }],
             xAxis: [
               {
                 type: "category",
@@ -517,10 +503,7 @@ export default {
             ],
           },
           {
-            title: [
-              { subtext: "第一次东扩后(1999年)" },
-              { id: "timeTitle", text: "1999" },
-            ],
+            title: [{ subtext: "第一次东扩后(1999年)" }],
             xAxis: [
               {
                 type: "category",
@@ -555,10 +538,7 @@ export default {
             ],
           },
           {
-            title: [
-              { subtext: "第二次东扩后(2004年)" },
-              { id: "timeTitle", text: "2004" },
-            ],
+            title: [{ subtext: "第二次东扩后(2004年)" }],
             xAxis: [
               {
                 type: "category",
@@ -593,10 +573,7 @@ export default {
             ],
           },
           {
-            title: [
-              { subtext: "第三次东扩后(2009年)" },
-              { id: "timeTitle", text: "2009" },
-            ],
+            title: [{ subtext: "第三次东扩后(2009年)" }],
             xAxis: [
               {
                 type: "category",
@@ -653,10 +630,7 @@ export default {
             ],
           },
           {
-            title: [
-              { subtext: "第四次东扩后(2017年)" },
-              { id: "timeTitle", text: "2017" },
-            ],
+            title: [{ subtext: "第四次东扩后(2017年)" }],
             xAxis: [
               {
                 type: "category",
@@ -691,10 +665,7 @@ export default {
             ],
           },
           {
-            title: [
-              { subtext: "第五次东扩后(2020年)" },
-              { id: "timeTitle", text: "2020" },
-            ],
+            title: [{ subtext: "第五次东扩后(2020年)" }],
             xAxis: [
               {
                 type: "category",

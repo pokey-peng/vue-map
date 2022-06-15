@@ -123,6 +123,7 @@ export default {
   top: 64px;
   height: calc(100vh - 64px);
   width: 28rem;
+  z-index: 99;
   overflow: -moz-scrollbars-none;
 }
 #sideBarContainer::-webkit-scrollbar {

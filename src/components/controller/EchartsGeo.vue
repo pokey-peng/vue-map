@@ -243,13 +243,13 @@ export default {
 
 #echart-jure {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: 16rem;
-  height: 15rem;
+  top: 2%;
+  right: 1%;
+  width: 25vh;
+  height: 28vh;
   /* padding-left: 10px;
   padding-right: 10px; */
   padding: 0;
-  background-color: antiquewhite;
+  background-color: rgba(250, 235, 215);
 }
 </style>

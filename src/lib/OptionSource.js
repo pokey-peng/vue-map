@@ -430,6 +430,7 @@ function getJureInitOption() {
     title: {
       text: "平民死亡与难民数量",
     },
+    color: ["#213083", "#30420E"],
     tooltip: {
       trigger: "axis",
       axisPointer: {
@@ -439,6 +440,7 @@ function getJureInitOption() {
         },
       },
     },
+    grid: { right: "20%", left: "20%" },
     xAxis: {
       type: "category",
       boundaryGap: true,
@@ -449,12 +451,22 @@ function getJureInitOption() {
       {
         type: "value",
         scale: true,
-        name: "平民死亡",
+        name: "平民死亡(千人)",
+        axisLabel: {
+          formatter: function (value, index) {
+            return value / 1000;
+          },
+        },
       },
       {
         type: "value",
         scale: true,
-        name: "难民数量",
+        name: "难民数量(千人)",
+        axisLabel: {
+          formatter: function (value, index) {
+            return value / 1000;
+          },
+        },
       },
     ],
     series: [

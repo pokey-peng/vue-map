@@ -18,7 +18,7 @@
         </v-card-text>
       </v-card>
     </v-footer>
-    <v-container fluid>
+    <v-container fluid style="height: 30px">
       <v-row align="center" justify="center" class="ma-12">
         <v-col cols="3">
           <v-list color="blue-grey darken-1">
